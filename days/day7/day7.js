@@ -441,3 +441,145 @@
 // }
 
 // generateColors('rgb',5);
+
+// Call your function shuffleArray, it takes an array as a parameter and it returns a shuffled array
+// function shuffleArray(arr) {
+// 	let result = [];
+// 	for(let i = 0; i < arr.length; i++){
+// 	result.push(arr[(Math.floor(Math.random() * i))])
+// 	}
+// console.log(result);
+// }
+// shuffleArray([1,2,3,4,5,6,7,8])
+
+// Call your function factorial, it takes a whole number as a parameter and it return a factorial of the number
+// function factorial(num) {
+// 	let sum = 1;
+// 	for(let i = num; i >= 1; i--){
+// 		sum = sum * i;
+// 	}
+// 	return console.log(sum);
+// }
+// factorial(6)
+
+// Call your function isEmpty, it takes a parameter and it checks if it is empty or not
+
+// function isEmpty(elem) {
+// 	if(elem === ''){
+// 		return console.log(true);
+// 	}
+// 	if(elem === []){
+// 		return console.log(true);
+// 	}
+// 	if(elem === {}){
+// 		return console.log(true);
+// 	}
+// 	else {return console.log(false);}
+// }
+// isEmpty('')
+
+// Call your function sum, it takes any number of arguments and it returns the sum.
+// function sum() {
+// 	let sum = 0;
+// 	for(let i = 0; i < arguments.length; i++){
+// 		sum += arguments[i];
+// 	}
+// 	return console.log(sum);
+// }
+// sum(15, 20, 30, 25, 10, 33, 40)
+
+// Write a function called sumOfArrayItems, it takes an array parameter and return the sum of all the items.
+//  Check if all the array items are number types. If not give return reasonable feedback.
+// function sumOfArrayItems(arr) {
+// 	let sum = 0;
+// 	for(let i = 0; i < arr.length; i++){
+// 		if(typeof(arr[i]) === 'number') {
+// 			sum += arr[i];
+// 		}
+// 	}w
+// 	return console.log(sum);
+// }
+// sumOfArrayItems([1,2,3,4,5,'4', [3]]);
+
+// Write a function called average, it takes an array parameter and returns the average of the items.
+//  Check if all the array items are number types. If not give return reasonable feedback.
+
+// function average(arr) {
+// 	let sum = 0;
+// 	let result = 0;
+// 	let newArr = [];
+// 	for(let i = 0; i < arr.length; i++){
+// 		if(typeof(arr[i]) === 'number') {
+// 			newArr.push(arr[i])
+// 		}
+// 	}
+// 	for(let i = 0; i < newArr.length; i++){
+// 		sum += newArr[i];
+
+// 	}
+// 	result = sum / newArr.length;
+// 	return console.log(result);
+// }
+// average([1,2,3,4,5,'6', [7]]);
+
+// Write a function called modifyArray takes array as parameter and modifies the fifth item of the array and return the array.
+// If the array length is less than five it return 'item not found'.
+// function modifyArray(arr) {
+//     if (arr.length < 5) {
+//         console.log("Not found");
+//     }
+//     if (arr[4]) {
+//         arr[4] = arr[4].toUpperCase();
+// 		console.log(arr);
+//     }
+// }
+// modifyArray(['Google', 'Facebook','Apple', 'Amazon','Microsoft',  'IBM']);
+
+// Write a function called isPrime, which checks if a number is prime number.
+
+// function isPrime(number) {
+// 	let isPrime = true;
+//     if (number > 1) {
+//         for (let i = 2; i < number; i++) {
+// 			if (number % i == 0) {
+// 				isPrime = false;
+// 				break;
+// 			}
+// 		}
+
+// 		if (isPrime) {
+// 			console.log(`${number} is a prime number`);
+// 		} else {
+// 			console.log(`${number} is a not prime number`);
+// 		}
+//     }
+// }
+// isPrime(6);
+
+// JavaScript variable name does not support special characters or symbols except $ or _.
+//  Write a function isValidVariable which check if a variable is valid or invalid variable.
+
+// function isValidVariable (elem) {
+// 	// let elemSplit = elem.split('');
+// 	let elem2 = elem.replace(/[\w\$]/g, '');
+// 	console.log(typeof(elem2));
+
+// 	if(elem2 !== ' '){
+// 		console.log('Name is invalid');
+// 	} else {
+// 		console.log('Name is valid');
+// 	}
+
+// }
+
+// isValidVariable ('a$c_b1d')
+
+// function country(arr) {
+//     let result = [];
+//     let newArr = arr.slice();
+//     for (let i = 1; i <= newArr.length; i++) {
+//         result.push(newArr[newArr.length - i]);
+//     }
+//     console.log(result);
+// }
+// country(["Google", "Facebook", "Apple", "Amazon"]);
