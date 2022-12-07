@@ -159,59 +159,48 @@
 //  Create a function called signUp which allows user to add to the collection.
 //   If user exists, inform the user that he has already an account.
 
-const users = [
-    {
-        _id: "ab12ex",
-        username: "Alex",
-        email: "alex@alex.com",
-        password: "123123",
-        createdAt: "08/01/2020 9:00 AM",
-        isLoggedIn: false,
-    },
-    {
-        _id: "fg12cy",
-        username: "Asab",
-        email: "asab@asab.com",
-        password: "123456",
-        createdAt: "08/01/2020 9:30 AM",
-        isLoggedIn: true,
-    },
-    {
-        _id: "zwf8md",
-        username: "Brook",
-        email: "brook@brook.com",
-        password: "123111",
-        createdAt: "08/01/2020 9:45 AM",
-        isLoggedIn: true,
-    },
-    {
-        _id: "eefamr",
-        username: "Martha",
-        email: "martha@martha.com",
-        password: "123222",
-        createdAt: "08/01/2020 9:50 AM",
-        isLoggedIn: false,
-    },
-    {
-        _id: "ghderc",
-        username: "Thomas",
-        email: "thomas@thomas.com",
-        password: "123333",
-        createdAt: "08/01/2020 10:00 AM",
-        isLoggedIn: false,
-    },
-];
-
-Object.values(users).forEach(value => console.log(value));
-
-// const userName = "Alex";
-// for (const arr of users) {
-//     for (let key in arr) {
-//         if (arr[key] == userName) {
-//             console.log('error');
-//         }
-//     }
-// }
+// const users = [
+//     {
+//         _id: "ab12ex",
+//         username: "Alex",
+//         email: "alex@alex.com",
+//         password: "123123",
+//         createdAt: "08/01/2020 9:00 AM",
+//         isLoggedIn: false,
+//     },
+//     {
+//         _id: "fg12cy",
+//         username: "Asab",
+//         email: "asab@asab.com",
+//         password: "123456",
+//         createdAt: "08/01/2020 9:30 AM",
+//         isLoggedIn: true,
+//     },
+//     {
+//         _id: "zwf8md",
+//         username: "Brook",
+//         email: "brook@brook.com",
+//         password: "123111",
+//         createdAt: "08/01/2020 9:45 AM",
+//         isLoggedIn: true,
+//     },
+//     {
+//         _id: "eefamr",
+//         username: "Martha",
+//         email: "martha@martha.com",
+//         password: "123222",
+//         createdAt: "08/01/2020 9:50 AM",
+//         isLoggedIn: false,
+//     },
+// {
+//     _id: "ghderc",
+//     username: "Thomas",
+//     email: "thomas@thomas.com",
+//     password: "123333",
+//     createdAt: "08/01/2020 10:00 AM",
+//     isLoggedIn: false,
+//     // },
+// ];
 
 // function signUp(_id$, username$, email$, password$, isLoggedIn$) {
 //     const obj = {
@@ -219,20 +208,141 @@ Object.values(users).forEach(value => console.log(value));
 //         username: username$,
 //         email: email$,
 //         password: password$,
-//         createdAt: new Date().toISOString().slice(0, 10),
+//         createdAt: new Date().toLocaleString().replace(/\,/g, ''),
 //         isLoggedIn: isLoggedIn$,
-//     }; 
+//     };
 //     for (const arr of users) {
-//         for (let key in arr) {
-//             // console.log(arr[key]);
-//             if (arr[key] == username$) {
-//                 console.log('Username is already exists');
-//             } 
-//             else {
-//                 users.push(obj);
-                
+//         let checkName = Object.values(users).filter(name => name.     === username$);
+//         if (checkName.length === 0) {
+//             return users.push(obj), console.log("User added");
+//         } else {
+//             return console.log("Username is already exists");
+//         }
+//     }
+// }
+// signUp("123", "Semi", "sema22@mai.pl", "14565", false);
+
+// b. Create a function called signIn which allows user to sign in to the application
+// function signIn(username$) {
+//     for (const object of users) {
+//         if (object.username === username$) {
+//             object.isLoggedIn = true;
+//             console.log(object);
+//         } else {
+//             console.log("error");
+//         }
+//     }
+// }
+// signIn("Martha");
+
+const products = [
+    {
+        _id: "eedfcf",
+        name: "mobile phone",
+        description: "Huawei Honor",
+        price: 200,
+        ratings: [
+            { userId: "fg12cy", rate: 5 },
+            { userId: "zwf8md", rate: 4.5 },
+        ],
+        likes: ['semi',1,2,3],
+    },
+    {
+        _id: "aegfal",
+        name: "Laptop",
+        description: "MacPro: System Darwin",
+        price: 2500,
+        ratings: [],
+        likes: ["fg12cy"],
+    },
+    {
+        _id: "hedfcg",
+        name: "TV",
+        description: "Smart TV:Procaster",
+        price: 400,
+        ratings: [{ userId: "fg12cy", rate: 5 }],
+        likes: ["fg12cy"],
+    },
+];
+
+// The products array has three elements and each of them has six properties. a. Create a function called rateProduct which rates the product
+// function rateProduct(productID, newUserId, newRate) {
+//     let ratingObj = {
+//         userId: newUserId,
+//         rate: newRate
+//     };
+//     for (let obj of products) { //obj is big objects
+//         for (let id in obj) { //id id keys, obj[id] -values
+//             if(obj[id] === productID) {
+//                 obj.ratings.push(ratingObj);
+//                 console.log(products);
+//                 return console.log('Rating pushed');
 //             }
 //         }
 //     }
 // }
-// signUp("123", "Asab", "sema22@mai.pl", "14565", false);
+// rateProduct("hedfcg", "123", 4);
+
+// Create a function called averageRating
+//  which calculate the average rating of a product
+
+// function averageRating(arr, productID) {
+//     let ObjRatingsLength = 0;
+//     let result = [];
+//     for (const object of arr) {
+//         //object.ratings-is array of objects
+//         if (object._id == productID) {
+//             for (let rateObj of object.ratings) {
+//                 result.push(rateObj.rate);
+//                 ObjRatingsLength = object.ratings.length;
+//             }
+//         }
+//     }
+//     result = result.reduce((sum, curr) => sum + curr);
+//     return console.log(
+//         `Average rating of product id:'${productID}' is ${(
+//             result / ObjRatingsLength
+//         ).toFixed(1)}`
+//     );
+// }
+// averageRating(products, "eedfcf");
+
+// function averageRating(arr,productID) {
+//     let ObjRatings = [];
+//     let numArray = [];
+//     let result = 0;
+//     for (let obj of arr) {
+//         //obj is one object in products
+//         ObjRatings.push(obj.ratings);
+//         console.log(obj.ratings);
+//     }
+//     // console.log(ObjRatings);
+//     for(let objSmall of ObjRatings) {
+//         for(let i of objSmall){
+//             numArray.push(i.rate);
+//             result = ((numArray.reduce((a,b) => a + b)) / numArray.length).toFixed(1);
+//         }
+//     }
+//     console.log(result);
+// }
+// averageRating(products,"eedfcf");
+
+
+// Create a function called likeProduct. This function will helps to like to the product
+//  if it is not liked and remove like if it was liked.
+
+// function likeProduct(arr,producctID,userID) {
+//     let curArr = arr.find(item => item._id == producctID);
+//     let likesArr = curArr.likes;
+//     let indexOfLike = likesArr.indexOf(userID);
+//     if(indexOfLike !== -1) {
+//         likesArr.splice(indexOfLike,1);
+//         console.log(`Like from '${userID}' removed (product ID: ${producctID})`);
+//     } if (indexOfLike == -1) {
+//         likesArr.push(userID);
+//         console.log(`Like from '${userID}' added (product ID: ${producctID})`);
+//     }
+//     return  console.log(curArr);
+// }
+
+// likeProduct(products,"aegfal", "fg12cy");
