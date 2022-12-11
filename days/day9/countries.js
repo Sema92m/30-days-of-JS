@@ -2011,6 +2011,7 @@ const countriesFull = [
         currency: "Botswana pula",
     },
 ];
+// const abc = countriesFull.map((lang) => lang.languages)
 
 // Sort countries by name, by capital, by population
 
@@ -2023,21 +2024,137 @@ const countriesFull = [
 //   }));
 
 // Find the 10 most spoken languages:
+
+// function mostSpokenLanguages(arr, num){
+
+//     for(let country of arr) {
+//         //country// objects of counrties
+//     a = country.languages;
+// array.push(a)
+// for(let lang of country) {
+//     console.log(lang);
+// }
+// }
+//    console.log(array);
+// // console.log(arr.find(item => (item.languages).length > 0));
+// }
+// mostSpokenLanguages(countriesFull,10)
+// {
+//     name: "Afghanistan",
+//     capital: "Kabul",
+//     languages: ["Pashto", "Uzbek", "Turkmen"],
+//     population: 27657145,
+//     flag: "https://restcountries.eu/data/afg.svg",
+//     currency: "Afghan afghani",
+// },
+
 let result = [];
-let counts = [];
+// let counts = [];
 const lang = countriesFull.map((arr) => arr.languages);
 for (let key of lang) {
     // result.push(key);//array of languages arrays
-    for(let i of key) {
-        result.push(i);//array of languages
+    for (let i of key) {
+        result.push(i); //array of languages
         result.sort();
-        // result.forEach((x) => counts[x] = (counts[x] || 0) + 1);
-        return result.forEach((letter) => counts[letter] = counts[letter] + 1 || 1);
-
     }
 }
-// for(let key of counts){
-//     let a = key
-//     console.log(a);
+// console.log(result);
+
+// let a = result.reduce(function(prev, cur) {
+//     prev[cur] = (prev[cur] || 0) + 1;
+//     return prev;
+//   }, {});
+// console.log(a.split(':'));
+// result.forEach((x) => counts[x] = (counts[x] || 0) + 1);
+// for(let i of counts) {
+//     console.log(i);
 // }
-console.log(counts)
+// console.log(counts)
+
+// Use countries_data.js file create a function which create the ten most populated countries
+
+// Sort countries by name, by capital, by population
+
+function sortByName(arr) {
+    return arr.sort((a, b) => a.capital - b.capital);
+}
+// console.log(sortByName(countriesFull));
+
+// function dynamicSort(property) {
+//     var sortOrder = 1;
+//     if(property ===  '') {
+//         sortOrder = -1;
+//         // property = property.substr(1);
+//     }
+//     return function (a,b) {
+//         var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+//         return result * sortOrder;
+//     }
+// }
+
+// console.log(countriesFull.sort(dynamicSort("capital")));
+
+// console.log(countriesFull.sort((a, b) => a.capital.localeCompare(b.capital)));// its work
+// console.log(countriesFull.sort((a,b) => a.capital < b.capital));
+
+// let aaa = {
+//     name: 'Antarctica',
+//     capital: '',
+//     languages: [ 'English', 'Russian' ],
+//     population: 1000,
+//     flag: 'https://restcountries.eu/data/ata.svg',
+//     currency: 'Australian dollar'
+//   }
+// console.log(typeof(aaa.capital));
+
+// console.log(typeof(undefined));
+// function mostPopulatedCountries(arr, num) {
+//     const sss = arr.sort((a,b) => b.population - a.population)
+//     console.log(sss.slice(0,num));
+// }
+// mostPopulatedCountries(countriesFull, 5);
+
+let ages = [
+    31, 26, 34, 37, 27, 26, 32, 32, 26, 27, 27, 24, 32, 33, 27, 25, 26, 38, 37,
+    31, 34, 24, 33, 29, 26,
+];
+// console.log(Math.min(...ages));
+
+let statistics = {
+    count: function (arr) {
+        return arr.length;
+    },
+    sum: function (arr) {
+        return arr.reduce((acc, cur) => acc + cur);
+    },
+    min: function (arr) {
+        return Math.min(...arr);
+    },
+    max: function (arr) {
+        return Math.max(...arr);
+    },
+    range: function (arr) {
+        return Math.max(...arr) - Math.min(...arr);
+    },
+    mean: function (arr) {
+        return (arr.reduce((acc, cur) => acc + cur) / arr.length).toFixed(0);
+    },
+    median: function (arr) {
+        return Math.floor(arr.reduce((acc, cur) => acc + cur) / arr.length);
+    },
+    mode: function (arr, num) {
+        let count = arr.filter((number) => number === num);
+        return `${num}, count: ${count.length}`;
+    },
+};
+
+console.log('Count:', statistics.count(ages))
+console.log('sum:', statistics.sum(ages))
+console.log('min:', statistics.min(ages))
+console.log('max:', statistics.max(ages))
+console.log('range:', statistics.range(ages))
+console.log('mean:', statistics.mean(ages))
+console.log('median:', statistics.median(ages))
+console.log("mode:", statistics.mode(ages, 21));
+
+// console.log(ages.filter(number => number === 26));

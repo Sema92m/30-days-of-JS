@@ -484,8 +484,8 @@ const countriesAll = [
 
 // Find the total price of products by chaining two or more array iterators(eg. arr.map(callback).filter(callback).reduce(callback))
 
-// const totalPrice = products.map((country) => country.price).filter((price) => price > 0).reduce((price, cur) => cur + price, 0);
-// console.log(totalPrice);
+const totalPrice = products.map((country) => country.price).filter((price) => price > 0)
+console.log(totalPrice);
 // Find the sum of 7price of products using only reduce reduce(callback))
 
 // const total = +products.reduce((sum,{price})=> sum + price,0)
