@@ -2012,40 +2012,100 @@
 //     },
 // ];
 
-// Exercises:Level 3
-// How many languages are there in the countries object file.
+// name: "Afghanistan",
+// capital: "Kabul",
+// languages: ["Pashto", "Uzbek", "Turkmen"],
+// population: 27657145,
+// flag: "https://restcountries.eu/data/afg.svg",
+// currency: "Afghan afghani",
 
-// let result = []
-// const lang = countriesFull.map((arr) => arr.languages)
-// for (let key of lang) {
-//     // result.push(key);//array of languages arrays
-//     for (let i of key) {
-//         result.push(i); //array of languages
+// Exercises: Level 3
+// Destructure the countries object print name, capital, population and languages of all countries
+
+// for(const {name, capital,languages, population} of countriesFull) {
+//     console.log(name, capital,languages, population);
+// }
+
+// A junior developer structure student name, skills and score in array of arrays which may not easy to read. Destructure the following array name to name, skills array to skills, scores array to scores, JavaScript score to jsScore and React score to reactScore variable in one line.
+
+// const student = ['David', ['HTM', 'CSS', 'JS', 'React'], [98, 85, 90, 95]]
+
+// let [name, skills, score] = student;
+// let [,,jsScore, reactScore] = score;
+// console.log(name, skills, jsScore, reactScore)
+
+// Write a function called convertArrayToObject which can convert the array to a structure object.
+
+// const students = [
+//     ["David", ["HTM", "CSS", "JS", "React"], [98, 85, 90, 95]],
+//     ["John", ["HTM", "CSS", "JS", "React"], [85, 80, 85, 80]]
+// ];
+
+// function convertArrayToObject(arr) {
+//     let newStudentsArr = []
+//     let result = {};
+//     for(let [name,skills,scores] of arr) {
+//         result.name = name;
+//         result.skills = skills;
+//         result.scores = scores;
+//         newStudentsArr.push(result)
 //     }
+//     console.log(newStudentsArr);
 // }
-// let langSet = new Set(result)
-// console.log(langSet.size);
+// convertArrayToObject(students)
 
-// *** Use the countries data to find the 10 most spoken languages:
-// let resultArr = [];
-// const arrOfArrLang = countriesFull.map((arr) => arr.languages);
-// for (const key of arrOfArrLang) {
-//     for (const lang of key) {
-//         resultArr.push(lang);
-//     }
-// }
-// let langSet = new Set(resultArr);
-// const counts = [];
-// for (const oneLang of langSet) {
-//     const filterLang = resultArr.filter((l) => l === oneLang);
-//     // console.log(filterLang);//arrays of the same languages
-//     counts.push({ lang: oneLang, leng: filterLang.length });
-// }
+// Copy the student object to newStudent without mutating the original object. In the new object add the following ?
+
+const student = {
+    name: "David",
+    age: 25,
+    skills: {
+        frontEnd: [
+            { skill: "HTML", level: 10 },
+            { skill: "CSS", level: 8 },
+            { skill: "JS", level: 8 },
+            { skill: "React", level: 9 },
+        ],
+        backEnd: [
+            { skill: "Node", level: 7 },
+            { skill: "GraphQL", level: 8 },
+        ],
+        dataBase: [{ skill: "MongoDB", level: 7.5 }],
+        dataScience: ["Python", "R", "D3.js"],
+    },
+};
 
 
-// function mostSpokenLanguagesFunc(arr, num) {
-//     let mostSpokenLanguages = arr.sort((a, b) => b.leng - a.leng).slice(0, num);
-// 	return console.log(mostSpokenLanguages);;
-// }
-// mostSpokenLanguagesFunc(counts, 10);
+const newStudent = JSON.parse(JSON.stringify(student));
 
+
+const addInfo = obj => {
+    const skills = obj.skills;
+let {frontEnd,backEnd,dataBase,dataScience} = skills;
+    frontEnd.push({skill: 'Bootstrap',level: 8})
+    backEnd.push({skill: 'Express',level: 9})
+    dataBase.push({skill: 'SQL',level: 8})
+    dataScience.push('SQL')
+    console.log(JSON.stringify(obj));
+}
+
+addInfo(newStudent)
+console.log(newStudent);
+
+// let skills = student.skills;
+// let frontEnd = skills.frontEnd;
+// let backEnd = skills.backEnd;
+// let dataBase = skills.dataBase;
+// let dataScience = skills.dataScience;
+
+// let bootstrap = { skill: "bootstrap", level: 8 };
+// let express = { skill: "Express ", level: 9 };
+// let SQL = { skill: "SQL ", level: 9 };
+// let dataSQL = "SQL";
+
+// frontEnd.push(bootstrap);
+// backEnd.push(express);
+// dataBase.push(SQL);
+// dataScience.push(dataSQL);
+
+// console.log(newStudent);
