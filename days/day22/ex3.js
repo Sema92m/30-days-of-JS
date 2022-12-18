@@ -2,7 +2,7 @@ const asabenehChallenges2020 = {
     description: "Asabeneh Yetayeh challenges",
     challengeTitle: "Asabeneh Yetayeh challenges",
     challengeSubtitle: "30DaysOfJavaScript Challenge",
-    challengeYear: '2020',
+    challengeYear: "2020",
     keywords: [
         "HTML",
         "HTML5",
@@ -197,8 +197,6 @@ const asabenehChallenges2020 = {
     ],
 };
 
-
-
 const body = document.body;
 const container = document.createElement("div");
 
@@ -206,14 +204,16 @@ const title = document.createElement("h2");
 const subtitle = document.createElement("h3");
 const date = document.createElement("div");
 const ul = document.createElement("ul");
-const authorName = document.createElement("p");
+const authorName = document.createElement("h2");
 const socialLinks = document.createElement("div");
 const bio = document.createElement("p");
 const authorTitlesSkillsQualifications = document.createElement("div");
-const keywords = document.createElement("div");
+
+
 
 //container
-body.insertAdjacentElement("afterbegin", container);
+// body.insertAdjacentElement("afterbegin", container);
+body.appendChild(container);
 container.classList.add("container");
 container.style.width = "800px";
 container.style.margin = "20px";
@@ -221,17 +221,17 @@ textCenter(container);
 
 //title
 title.innerHTML = `${asabenehChallenges2020.challengeTitle} <span class = 'span2020'>2020</span>`;
+container.appendChild(title);
+const span2020 = document.querySelector(".span2020");
 function intervalColorSpan() {
     span2020.style.color = hexaColor();
 }
 setInterval(intervalColorSpan, 1000);
-container.appendChild(title);
-const span2020 = document.querySelector(".span2020");
-span2020.style.fontSize = '60px';
+span2020.style.fontSize = "60px";
 
 //subtitle
 subtitle.textContent = asabenehChallenges2020.challengeSubtitle;
-subtitle.style.textDecoration = 'underline';
+subtitle.style.textDecoration = "underline";
 marginTopBot10(subtitle);
 container.appendChild(subtitle);
 
@@ -254,18 +254,19 @@ setInterval(dateInterval, 1000);
 container.appendChild(ul);
 for (let i = 0; i < asabenehChallenges2020.challenges.length; i++) {
     let li = document.createElement("li");
-    let lists = `<a id='chalengeLiHREF${i + 1}' href="${
+    li.setAttribute("id", `chalengeLi${i}`);
+    let lists = `<a id='chalengeLiHREF${i}' href="${
         asabenehChallenges2020.challenges[i].githubUrl
     }">${asabenehChallenges2020.challenges[i].name}</a>
-                <details>
-                    <summary>${asabenehChallenges2020.challenges[i].name
-                        .replace(/.*\bOf(.*?\b)/i, "")
-                        .trim()}</summary>
-                    <p class='chalengeLiInfo'>${asabenehChallenges2020.challenges[
-                        i
-                    ].topics.join(" ")}</p>
-                </details>
-                <p id='chalengeLiStatus${i + 1}'>Coming</p>
+                    <details>
+                        <summary>${asabenehChallenges2020.challenges[i].name
+                            .replace(/.*\bOf(.*?\b)/i, "")
+                            .trim()}</summary>
+                        <p class='chalengeLiInfo'>${asabenehChallenges2020.challenges[
+                            i
+                        ].topics.join(" ")}</p>
+                    </details>
+                    <p id='chalengeLiStatus${i}'>Coming</p>
                 `;
     li.innerHTML = lists;
     li.style.width = "800px";
@@ -273,12 +274,24 @@ for (let i = 0; i < asabenehChallenges2020.challenges.length; i++) {
     li.style.display = "flex";
     li.style.justifyContent = "space-between";
     li.style.alignItems = "center";
-    li.style.padding= "0 15px";
+    li.style.padding = "0 15px";
     li.style.marginBottom = "5px";
-    li.style.background = "#64b949";
+    li.style.background = "#d43535";
 
     ul.appendChild(li);
 }
+const chalengeLi0 = document.querySelector("#chalengeLi0");
+const chalengeLi1 = document.querySelector("#chalengeLi1");
+chalengeLi0.style.background = "#4cc540";
+chalengeLi1.style.background = "#ebd940";
+
+//author name
+container.appendChild(authorName);
+authorName.textContent = `${
+    asabenehChallenges2020.author.firstName +
+    asabenehChallenges2020.author.lastName
+}`;
+authorName.style.margin = "15px 0 5px";
 
 //socialLinks
 //socialLinkedIn
@@ -310,18 +323,148 @@ container.appendChild(socialLinks);
 socialLinks.appendChild(socialLinkedIn);
 socialLinks.appendChild(socialTwitter);
 socialLinks.appendChild(socialGithub);
-marginTopBot10(socialLinks);
-//bio info
+
+function colorBlack(...elems) {
+    elems.forEach((elem) => (elem.style.color = "black"));
+    elems.forEach((elem) => (elem.style.fontSize = "20px"));
+}
+colorBlack(socialLinkedIn, socialTwitter, socialGithub);
+
+socialLinks.style.display = "flex";
+socialLinks.style.justifyContent = "center";
+socialLinks.style.gap = "10px";
+socialLinks.style.marginBottom = "25px";
+
+//bio info text
 bio.textContent = asabenehChallenges2020.author.bio;
 container.appendChild(bio);
 
+//3 columns Title Skills Qualifications
+authorTitlesSkillsQualifications.style.display = "flex";
+authorTitlesSkillsQualifications.style.justifyContent = "center";
+authorTitlesSkillsQualifications.style.gap = "40px";
+authorTitlesSkillsQualifications.style.margin = "15px 0";
+container.appendChild(authorTitlesSkillsQualifications);
+const columnsTitle = document.createElement("div");
+const columnsSkills = document.createElement("div");
+const columnsQualif = document.createElement("div");
 
-//author name
-container.appendChild(authorName);
-authorName.textContent = `${
-    asabenehChallenges2020.author.firstName +
-    asabenehChallenges2020.author.lastName
-}`;
+function elemsAppendToMainElem(mainElem, ...elems) {
+    elems.forEach((elem) => mainElem.appendChild(elem));
+    elems.forEach((elem) => elem.style.display = 'flex');
+    elems.forEach((elem) => elem.style.flexDirection = 'column');
+    elems.forEach((elem) => elem.style.alignItems = 'flex-start');
+}
+elemsAppendToMainElem(
+    authorTitlesSkillsQualifications,
+    columnsTitle,
+    columnsSkills,
+    columnsQualif
+);
+const author = asabenehChallenges2020.author;
+
+//3 column Qualification
+columnsQualif.setAttribute('id', 'qualif');
+
+const qualifElem = document.createElement("div");
+const titleOfQualifElem = document.createElement("h4");
+titleOfQualifElem.textContent = "Qualifications";
+titleOfQualifElem.style.margin = '0 auto';
+columnsQualif.appendChild(titleOfQualifElem);
+
+function createElemLIQualif(initialArr, targetElem) {
+    for (let i = 0; i < initialArr.length; i++) {
+        let li = document.createElement("li");
+        li.style.listStyleType = "none";
+        li.innerHTML = `<li id='qualificayionLI${i}'><i class="fa-solid fa-square-check"></i> ${initialArr[i]}</li>`;
+        targetElem.appendChild(li);
+        
+    }
+}
+qualifElem.innerHTML = createElemLIQualif(author.qualifications, columnsQualif);
+
+//second column Skills
+columnsSkills.setAttribute('id', 'skills');
+const skillsElem = document.createElement("div");
+const titleOfSkillsElem = document.createElement("h4");
+titleOfSkillsElem.textContent = "Skills";
+titleOfSkillsElem.style.margin = '0 auto';
+columnsSkills.appendChild(titleOfSkillsElem);
+function createElemLISkills(initialArr, targetElem) {
+    for (let i = 0; i < initialArr.length; i++) {
+        let li = document.createElement("li");
+        li.innerHTML = `<li><i class="fa-solid fa-square-check" style="color:green"></i> ${initialArr[i]}</li>`;
+        targetElem.appendChild(li);
+        li.style.listStyleType = "none";
+    }
+}
+skillsElem.innerHTML = createElemLISkills(author.skills, columnsSkills);
+
+//first column Titles
+const titleElem = document.createElement("div");
+
+function createElemLI(initialArr, targetElem) {
+    for (let i = 0; i < initialArr.length; i++) {
+        let li = document.createElement("div");
+        li.innerHTML = `${initialArr[i][0] + initialArr[i][1]}`;
+        targetElem.appendChild(li);
+        li.style.listStyleType = "none";
+    }
+}
+
+const titleOfTitleElem = document.createElement("h4");
+titleOfTitleElem.style.margin = '0 auto';
+titleOfTitleElem.textContent = "Titles";
+columnsTitle.appendChild(titleOfTitleElem);
+
+titleElem.innerHTML = createElemLI(author.titles, columnsTitle);
+columnsTitle.appendChild(titleElem);
+
+
+//keywords
+
+const keywordsContainer = document.createElement('div');
+const keywordsTitle = document.createElement('h4');
+const keywordsDiv = document.createElement('div');
+keywordsTitle.textContent = 'Keywords';
+keywordsTitle.style.textAlign = 'left';
+keywordsContainer.style.width = '650px';
+keywordsContainer.style.margin = '0 auto';
+
+function keywordStyles(arr) {
+    for(let i = 0; i < arr.length; i++){ 
+        let keyword = document.createElement('div');
+        keyword.textContent = `#${arr[i]}`;
+        keyword.style.display = 'inline-block';
+        keyword.style.margin = '3px 5px';
+        keyword.style.padding = '0 5px';
+        keyword.style.borderRadius = '15px';
+        keyword.style.background = hexaColor();
+        keywordsDiv.appendChild(keyword);
+    }
+    
+}
+keywordStyles(asabenehChallenges2020.keywords);
+
+// keywordsDiv.textContent = asabenehChallenges2020.keywords;
+container.appendChild(keywordsContainer);
+keywordsContainer.appendChild(keywordsTitle);
+keywordsContainer.appendChild(keywordsDiv);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //hexa func
