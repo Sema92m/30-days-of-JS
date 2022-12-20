@@ -209,8 +209,6 @@ const socialLinks = document.createElement("div");
 const bio = document.createElement("p");
 const authorTitlesSkillsQualifications = document.createElement("div");
 
-
-
 //container
 // body.insertAdjacentElement("afterbegin", container);
 body.appendChild(container);
@@ -259,7 +257,9 @@ for (let i = 0; i < asabenehChallenges2020.challenges.length; i++) {
         asabenehChallenges2020.challenges[i].githubUrl
     }">${asabenehChallenges2020.challenges[i].name}</a>
                     <details>
-                        <summary style="margin-bottom: 5px">${asabenehChallenges2020.challenges[i].name
+                        <summary style="margin-bottom: 5px">${asabenehChallenges2020.challenges[
+                            i
+                        ].name
                             .replace(/.*\bOf(.*?\b)/i, "")
                             .trim()}</summary>
                             <ul style="margin-bottom: 10px" id='ul1${i}'></ul>
@@ -279,18 +279,15 @@ for (let i = 0; i < asabenehChallenges2020.challenges.length; i++) {
     ul.appendChild(li);
 }
 
-
-
-
 function createElemTopics() {
     let arr = asabenehChallenges2020.challenges;
-    for (let i = 0; i < arr.length ;i++) {
+    for (let i = 0; i < arr.length; i++) {
         let ul1 = document.querySelector(`#ul1${i}`);
-        ul1.style.display = 'flex';
-        ul1.style.flexDirection = 'column';
-        ul1.style.alignItems = 'flex-start';
-        for(let j = 0; j < arr[i].topics.length; j++) {
-            let div = document.createElement('div');
+        ul1.style.display = "flex";
+        ul1.style.flexDirection = "column";
+        ul1.style.alignItems = "flex-start";
+        for (let j = 0; j < arr[i].topics.length; j++) {
+            let div = document.createElement("div");
             div.textContent = arr[i].topics[j];
             ul1.appendChild(div);
         }
@@ -301,14 +298,14 @@ createElemTopics();
 ///////////////////
 
 const firstStatus = document.querySelector("#chalengeLiStatus0");
-firstStatus.textContent = 'Done';
+firstStatus.textContent = "Done";
 const secondStatus = document.querySelector("#chalengeLiStatus1");
-secondStatus.textContent = 'Ongoing';
+secondStatus.textContent = "Ongoing";
 
 const firstHREF = document.querySelector("#chalengeLiHREF0");
-firstHREF.style.textDecoration = 'underline';
+firstHREF.style.textDecoration = "underline";
 const secondHREF = document.querySelector("#chalengeLiHREF1");
-secondHREF.style.textDecoration = 'underline';
+secondHREF.style.textDecoration = "underline";
 
 const chalengeLi0 = document.querySelector("#chalengeLi0");
 const chalengeLi1 = document.querySelector("#chalengeLi1");
@@ -379,12 +376,11 @@ authorTitlesSkillsQualifications.style.gap = "40px";
 authorTitlesSkillsQualifications.style.margin = "15px 0";
 container.appendChild(authorTitlesSkillsQualifications);
 
-
 function elemsAppendToMainElem(mainElem, ...elems) {
     elems.forEach((elem) => mainElem.appendChild(elem));
-    elems.forEach((elem) => elem.style.display = 'flex');
-    elems.forEach((elem) => elem.style.flexDirection = 'column');
-    elems.forEach((elem) => elem.style.alignItems = 'flex-start');
+    elems.forEach((elem) => (elem.style.display = "flex"));
+    elems.forEach((elem) => (elem.style.flexDirection = "column"));
+    elems.forEach((elem) => (elem.style.alignItems = "flex-start"));
 }
 elemsAppendToMainElem(
     authorTitlesSkillsQualifications,
@@ -395,37 +391,40 @@ elemsAppendToMainElem(
 const author = asabenehChallenges2020.author;
 
 //3 column Qualification
-columnsQualif.setAttribute('id', 'qualif');
+columnsQualif.setAttribute("id", "qualif");
 const qualifElem = document.createElement("div");
 const titleOfQualifElem = document.createElement("h4");
 titleOfQualifElem.textContent = "Qualifications";
-titleOfQualifElem.style.margin = '0 auto';
+titleOfQualifElem.style.margin = "0 auto";
 columnsQualif.appendChild(titleOfQualifElem);
 function createElemLIQualif(initialArr, targetElem) {
     for (let i = 0; i < initialArr.length; i++) {
         let li = document.createElement("li");
         li.style.listStyleType = "none";
-        li.innerHTML = `<li><i id='qualificayionLI${i}' class="fa-sharp fa-solid fa-user-secret"></i> ${initialArr[i]}</li>`;
+        li.innerHTML = `<li>
+                            <i id='qualificayionLI${i}' class="fa-sharp fa-solid fa-user-secret">
+                            </i> ${initialArr[i]}
+                        </li>`;
         targetElem.appendChild(li);
-
     }
 }
 
-
-
-
 qualifElem.innerHTML = createElemLIQualif(author.qualifications, columnsQualif);
 const firstICONQualification = document.querySelector("#qualificayionLI0");
-firstICONQualification.classList.remove('fa-sharp','fa-solid','fa-user-secret');
+firstICONQualification.classList.remove(
+    "fa-sharp",
+    "fa-solid",
+    "fa-user-secret"
+);
 firstICONQualification.classList.add("fa-solid", "fa-book-atlas");
-firstICONQualification.style.color = 'blue';
+firstICONQualification.style.color = "blue";
 
 //second column Skills
-columnsSkills.setAttribute('id', 'skills');
+columnsSkills.setAttribute("id", "skills");
 const skillsElem = document.createElement("div");
 const titleOfSkillsElem = document.createElement("h4");
 titleOfSkillsElem.textContent = "Skills";
-titleOfSkillsElem.style.margin = '0 auto';
+titleOfSkillsElem.style.margin = "0 auto";
 columnsSkills.appendChild(titleOfSkillsElem);
 function createElemLISkills(initialArr, targetElem) {
     for (let i = 0; i < initialArr.length; i++) {
@@ -439,9 +438,9 @@ skillsElem.innerHTML = createElemLISkills(author.skills, columnsSkills);
 
 //first column Titles
 const titleElem = document.createElement("div");
-titleElem.setAttribute('id','titleColunm');
+titleElem.setAttribute("id", "titleColunm");
 const titleOfTitleElem = document.createElement("h4");
-titleOfTitleElem.style.margin = '0 auto';
+titleOfTitleElem.style.margin = "0 auto";
 titleOfTitleElem.textContent = "Titles";
 columnsTitle.appendChild(titleOfTitleElem);
 function createElemLI(initialArr, targetElem) {
@@ -455,34 +454,30 @@ function createElemLI(initialArr, targetElem) {
 titleElem.innerHTML = createElemLI(author.titles, columnsTitle);
 
 //keywords
-const keywordsContainer = document.createElement('div');
-const keywordsTitle = document.createElement('h4');
-const keywordsDiv = document.createElement('div');
-keywordsTitle.textContent = 'Keywords';
-keywordsTitle.style.textAlign = 'left';
-keywordsContainer.style.width = '650px';
-keywordsContainer.style.margin = '0 auto';
+const keywordsContainer = document.createElement("div");
+const keywordsTitle = document.createElement("h4");
+const keywordsDiv = document.createElement("div");
+keywordsTitle.textContent = "Keywords";
+keywordsTitle.style.textAlign = "left";
+keywordsContainer.style.width = "650px";
+keywordsContainer.style.margin = "0 auto";
 
 function keywordStyles(arr) {
-    for(let i = 0; i < arr.length; i++){
-        let keyword = document.createElement('div');
+    for (let i = 0; i < arr.length; i++) {
+        let keyword = document.createElement("div");
         keyword.textContent = `#${arr[i]}`;
-        keyword.style.display = 'inline-block';
-        keyword.style.margin = '3px 5px';
-        keyword.style.padding = '0 5px';
-        keyword.style.borderRadius = '15px';
+        keyword.style.display = "inline-block";
+        keyword.style.margin = "3px 5px";
+        keyword.style.padding = "0 5px";
+        keyword.style.borderRadius = "15px";
         keyword.style.background = hexaColor();
         keywordsDiv.appendChild(keyword);
     }
-
 }
 keywordStyles(asabenehChallenges2020.keywords);
 container.appendChild(keywordsContainer);
 keywordsContainer.appendChild(keywordsTitle);
 keywordsContainer.appendChild(keywordsDiv);
-
-
-
 
 //hexa func
 function hexaColor() {
