@@ -113,21 +113,58 @@
 
 // button.addEventListener("click", generateBlock);
 
-
-
-
-
-
 //Exercise 2: Generating the keyboard code code using even listener. The image below.
 
 const body = document.body;
-const header = document.createElement('h3');
+body.style.display = "flex";
+body.style.flexDirection = "column";
+body.style.justifyContent = "center";
+body.style.alignItems = "center";
+body.style.margin = "50px 0";
+const divResult = document.createElement("div");
+const divHeader = document.createElement("div");
+const header = document.createElement("h3");
 const result = document.createElement("h3");
-header.textContent = 'You pressed';
-result.textContent = 'result';
+header.textContent = "Press any key";
+
+body.insertAdjacentElement("afterbegin", divResult);
+body.insertAdjacentElement("afterbegin", divHeader);
+
+divHeader.style.width = "400px";
+divHeader.style.height = "50px";
+divHeader.style.display = "flex";
+divHeader.style.justifyContent = "center";
+divHeader.style.alignItems = "center";
+divHeader.style.background = "lightgray";
+divHeader.style.borderRadius = "20px";
+divHeader.style.boxShadow = "5px 5px 5px gray";
+divHeader.style.textShadow = "2px 2px 3px gray";
 
 
-body.insertAdjacentElement('afterbegin', result);
-body.insertAdjacentElement('afterbegin', header);
+result.style.display = "none";
+result.style.minWidth = "200px";
+result.style.height = "200px";
+result.style.padding = "15px";
+result.style.justifyContent = "center";
+result.style.alignItems = "center";
+result.style.background = "lightgray";
+result.style.margin = "20px 0";
+result.style.borderRadius = "20px";
+result.style.fontSize = "150px";
+result.style.color = "green";
+result.style.boxShadow = "5px 5px 5px gray";
+result.style.textShadow = "2px 2px 3px gray";
 
+divResult.appendChild(result);
+divHeader.appendChild(header);
 
+body.addEventListener("keyup", function (event) {
+    let eventCode = (event.code).replace(/Digit|Key|Numpad/, "");
+    console.dir(event);
+    result.style.display = "flex";
+    header.textContent = `You presed ${eventCode}`;
+    result.textContent = event.key;
+});
+
+let str = 'Digit1';
+console.log(str.replace("Digit", ""));
