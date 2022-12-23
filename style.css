@@ -13,10 +13,9 @@ section {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background-color: hsla(0, 0%, 77%, 0.692);
+	
+
 }
-
-
 section img {
 	position: absolute;
 }
