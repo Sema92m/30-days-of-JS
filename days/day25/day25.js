@@ -1923,7 +1923,7 @@ const countriesFull = [
         currency: "British pound",
     },
     {
-        name: "United States of America",
+        name: "USA",
         capital: "Washington, D.C.",
         languages: ["English"],
         population: 323947000,
@@ -2011,39 +2011,29 @@ const countriesFull = [
         currency: "Botswana pula",
     },
 ];
-// {
-// 	name: "Afghanistan",
-// 	capital: "Kabul",
-// 	languages: ["Pashto", "Uzbek", "Turkmen"],
-// 	population: 27657145,
-// 	flag: "https://restcountries.eu/data/afg.svg",
-// 	currency: "Afghan afghani",
-// },
 const body = document.body;
-body.style.flexDirection = "column";
-flex(body);
-
+body.style.background = 'lightgray';
 const title = document.createElement("h2");
 const subtitle = document.createElement("h4");
 const buttonsContainer = document.createElement("div");
 const graphicsContainer = document.createElement("div");
-
 const populationButton = document.createElement("button");
-const languegesButton = document.createElement("button");
+const languagesButton = document.createElement("button");
 const buttonsSubTitle = document.createElement("div");
 
-
-title.textContent = "Wourd Countries Data";
+title.textContent = "World Countries Data";
 subtitle.textContent = "Currently, we have 250 countries";
 populationButton.textContent = "POPULATION";
-languegesButton.textContent = "LANGUAGES";
-buttonsSubTitle.textContent = "10 Most populated countries in the world";
+languagesButton.textContent = "LANGUAGES";
+
+languagesButton.setAttribute("id", "languagesButton");
+populationButton.setAttribute("id", "populationButton");
 
 body.appendChild(title);
 body.appendChild(subtitle);
 body.appendChild(buttonsContainer);
 buttonsContainer.appendChild(populationButton);
-buttonsContainer.appendChild(languegesButton);
+buttonsContainer.appendChild(languagesButton);
 buttonsContainer.appendChild(buttonsSubTitle);
 body.appendChild(graphicsContainer);
 
@@ -2056,8 +2046,8 @@ function sortArrByLanguages(arr) {
         const filterLang = resultLang.filter((lang) => language === lang);
         counts.push({ language: language, count: filterLang.length });
     }
-     counts = counts.sort((a, b) => b.count - a.count).slice(0, 3);
-     return counts;
+    counts = counts.sort((a, b) => b.count - a.count).slice(0, 10);
+    return counts;
 }
 sortArrByLanguages(countriesFull);
 
@@ -2073,53 +2063,113 @@ function sortArrByPopulation(arr) {
     }
     populationArr = populationArr
         .sort((a, b) => b.population - a.population)
-        .slice(0, 4);
+        .slice(0, 10);
     sumPopulations = sumPopulations.reduce((a, b) => a + b);
     return populationArr, sumPopulations;
 }
 sortArrByPopulation(countriesFull);
-// console.log(populationArr, sumPopulations);
+
 //buttons
 populationButton.setAttribute("id", "populationButton");
-languegesButton.setAttribute("id", "languegesButton");
+languagesButton.setAttribute("id", "languagesButton");
 buttonsContainer.style.margin = "15px 0";
 //graphics
-const firstBlock = document.createElement("div");
-const secondBlock = document.createElement("div");
-const thirdBlock = document.createElement("div");
-firstBlock.setAttribute("id", "firstBlock");
-secondBlock.setAttribute("id", "secondBlock");
-thirdBlock.setAttribute("id", "thirdBlock");
-graphicsContainer.appendChild(firstBlock);
-graphicsContainer.appendChild(secondBlock);
-graphicsContainer.appendChild(thirdBlock);
+
+graphicsContainer.setAttribute("id", "graphicsContainer");
 graphicsContainer.style.display = "grid";
-graphicsContainer.style.gridTemplate = "1fr/ 1fr 4fr 1fr";
-graphicsContainer.style.height = "500px";
 graphicsContainer.style.width = "500px";
-graphicsContainer.style.background = "lightgray";
+graphicsContainer.style.margin = "0 auto";
+graphicsContainer.style.gap = "5px";
 
+languagesButton.addEventListener("click", sortByLanguage);
+function sortByLanguage() {
+    if(graphicsContainer.innerHTML !== '') {
+        graphicsContainer.innerHTML = '';
+    }
+    graphicsContainer.setAttribute("class", "language");
+    buttonsSubTitle.textContent = '10 most spoken languages in the World';
+        for (let country of counts) {
+            let lineCont = document.createElement("div");
+            let langName = document.createElement("div");
+            let langCount = document.createElement("div");
+            let line = document.createElement("div");
+            let line2 = document.createElement("div");
 
-const ul1 = document.createElement("ul");
-const ul2 = document.createElement("ul");
-const ul3 = document.createElement("ul");
-firstBlock.appendChild(ul1);
-secondBlock.appendChild(ul2);
-thirdBlock.appendChild(ul3);
-for(let country of counts) {
-    let langDiv = document.createElement("div");
-    let langCount = document.createElement("div");
-    langDiv.textContent = country.language;
-    langCount.textContent = country.count;
-    ul1.appendChild(langDiv);
-    ul3.appendChild(langCount);
+            langName.style.textAlign = "left";
+            langName.style.width = "25%";
+            langCount.style.width = "20%";
+            langCount.style.textAlign = "left";
+            langCount.style.paddingLeft = "10px";
+
+            lineCont.appendChild(langName);
+            lineCont.appendChild(line);
+            lineCont.appendChild(line2);
+            lineCont.appendChild(langCount);
+            lineCont.style.display = "flex";
+            langCount.style.textAlign = "left";
+            langCount.style.paddingLeft = "10px";
+
+            langName.textContent = country.language;
+            langCount.textContent = country.count;
+
+            line.style.height = "100%";
+            line.style.width = `${country.count}%`;
+            line.style.background = "rgb(233, 129, 81)";
+
+            line2.style.height = "100%";
+            line2.style.width = `${100 - country.count}%`;
+            line2.style.background = "gray";
+            graphicsContainer.appendChild(lineCont);
+        }
+}
+
+populationButton.addEventListener('click', sortByPopulation);
+function sortByPopulation() {
+    if(graphicsContainer.innerHTML !== '') {
+        graphicsContainer.innerHTML = '';
+    }
+    graphicsContainer.setAttribute("class", "population");
+    buttonsSubTitle.textContent = '10 most populated countries in the World';
+    for (let country of populationArr) {
+        let populationCont = document.createElement("div");
+        let populationName = document.createElement("div");
+        let populationCount = document.createElement("div");
+        let line = document.createElement("div");
+        let line2 = document.createElement("div");
+
+        populationName.style.textAlign = "left";
+        populationName.style.width = "25%";
+        populationCont.style.display = "flex";
+        populationCount.style.width = "30%";
+        populationCount.style.textAlign = "left";
+        populationCount.style.paddingLeft = "10px";
+
+        populationCont.appendChild(populationName);
+        populationCont.appendChild(line);
+        populationCont.appendChild(line2);
+        populationCont.appendChild(populationCount);
+
+        populationName.textContent = country.name;
+        populationCount.textContent = country.population;
+
+        line.style.height = "18.4px";
+        line.style.width = `${(country.population * 100) / sumPopulations}%`;
+        line.style.background = "rgb(233, 129, 81)";
+
+        line2.style.height = "18.4px";
+        line2.style.width = `${100 - ((country.population * 100) / sumPopulations)}%`;
+        line2.style.background = "gray";
+        graphicsContainer.appendChild(populationCont);
+    }
+    //first WORLD element
+    let sumOfPopulation = document.createElement("div");
+    sumOfPopulation.innerHTML = `<div style="display: flex;"><div style="text-align: left; width: 25%;">World</div><div style="height: 18.4px; width: 100%; background: rgb(233, 129, 81);"></div><div style="width: 30%; text-align: left; padding-left: 10px;">${sumPopulations}</div></div>`;
+    graphicsContainer.insertAdjacentElement("afterbegin",sumOfPopulation);
 }
 
 
 
-
-
-
+sortByPopulation()
 
 function flex(elem) {
     elem.style.display = "flex";
