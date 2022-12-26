@@ -214,8 +214,7 @@ const azButton = document.createElement("button");
 const searchContainer = document.createElement("div");
 const searchIcon = document.createElement("div");
 const searchInput = document.createElement("input");
-
-//body
+searchInput.placeholder = "Search country...";
 
 body.style.display = "flex";
 body.style.flexDirection = "column";
@@ -244,7 +243,7 @@ flex(buttonsContainer);
 buttonsContainer.style.gap = "10px";
 startingWordButton.textContent = "STARTING WORLD";
 anyWordButton.textContent = "SEARCH WITH ANY WORD";
-azButton.innerHTML = '⇅';
+azButton.innerHTML = "⇅";
 // azButton.innerHTML = '<i class="fa-solid fa-arrow-up-a-z"></i>';
 
 buttonsStyles(startingWordButton);
@@ -261,7 +260,7 @@ searchInput.style.paddingLeft = "10px";
 searchInput.style.borderRadius = "15px";
 searchInput.style.textAlign = "left";
 
-searchIcon.innerHTML = '🔍';
+searchIcon.innerHTML = "🔍";
 searchIcon.style.color = "black";
 
 topContainer.appendChild(title);
@@ -304,18 +303,14 @@ function cardStyles(card) {
     card.style.borderRadius = "5px";
 }
 
-
-
 // search word func
-
 startingWordButton.addEventListener("click", searchWorld);
-
 function searchWorld() {
-	bottomContainer.innerHTML = '';
-	let searchInputValue = searchInput.value.toLowerCase();
+    bottomContainer.innerHTML = "";
+    let searchInputValue = searchInput.value.toLowerCase();
     if (searchInput.value !== "") {
         for (let country of countries) {
-			let countryName = country.toLowerCase();
+            let countryName = country.toLowerCase();
 
             if (countryName.startsWith(`${searchInputValue}`)) {
                 const card = document.createElement("div");
@@ -325,15 +320,16 @@ function searchWorld() {
             }
         }
     }
+    info.innerHTML = `Countries starts with <span style="color:red; font-style: italic">${searchInput.value}</span> are <span style='color:green'>${bottomContainer.childNodes.length}</span>`;
 }
 
 anyWordButton.addEventListener("click", includesWorld);
 function includesWorld() {
-	bottomContainer.innerHTML = '';
-	let searchInputValue = searchInput.value.toLowerCase();
+    bottomContainer.innerHTML = "";
+    let searchInputValue = searchInput.value.toLowerCase();
     if (searchInput.value !== "") {
         for (let country of countries) {
-			let countryName = country.toLowerCase();
+            let countryName = country.toLowerCase();
 
             if (countryName.includes(`${searchInputValue}`)) {
                 const card = document.createElement("div");
@@ -343,21 +339,45 @@ function includesWorld() {
             }
         }
     }
+    info.innerHTML = `Countries containig <span style="color:red;
+    font-style: italic">${searchInput.value}</span> are <span style='color:green'>${bottomContainer.childNodes.length}</span>`;
 }
+
 
 
 function dinamicReloadCardsFull() {
-	
-	if (searchInput.value === "" && bottomContainer.innerHTML == '') {
+	if (searchInput.value == "") {
 		for (let country of countries) {
-                const card = document.createElement("div");
-                card.textContent = country;
-                cardStyles(card);
-                bottomContainer.appendChild(card);
+            
+            info.innerHTML = '';
+            const card = document.createElement("div");
+            card.textContent = country;
+            cardStyles(card);
+            bottomContainer.appendChild(card);
+            
         }
+        
 	}
+    
 }
-setInterval(dinamicReloadCardsFull,500);
+dinamicReloadCardsFull()
+
+// let aa = setInterval(function dinamicReloadCardsFull() {
+//     if (searchInput.value == "") {
+//         for (let country of countries) {
+//             info.innerHTML = "";
+//             const card = document.createElement("div");
+//             card.textContent = country;
+//             cardStyles(card);
+//             bottomContainer.appendChild(card);
+//         }
+//     }
+//     // if (bottomContainer.childNodes.length === 193) {
+//     // }
+// }, 500);
+
+
+
 
 
 function flex(elem) {
@@ -375,15 +395,14 @@ function buttonsStyles(elem) {
     elem.style.backgroundImage = "linear-gradient(to right, #b151e9 , #8a3fb6)";
 }
 
-
-azButton.addEventListener('click', sortAZ);
+azButton.addEventListener("click", sortAZ);
 function sortAZ() {
-	let names = [];
-	for (let i = 0; i < bottomContainer.childNodes.length; i++){ 
-		names.push((bottomContainer.childNodes[i].innerHTML));
-	}
-	let namesReverse = names.reverse();
-	for (let i = 0; i < bottomContainer.childNodes.length; i++) {
-		bottomContainer.childNodes[i].textContent = namesReverse[i];
-	}
+    let names = [];
+    for (let i = 0; i < bottomContainer.childNodes.length; i++) {
+        names.push(bottomContainer.childNodes[i].innerHTML);
+    }
+    let namesReverse = names.reverse();
+    for (let i = 0; i < bottomContainer.childNodes.length; i++) {
+        bottomContainer.childNodes[i].textContent = namesReverse[i];
+    }
 }
