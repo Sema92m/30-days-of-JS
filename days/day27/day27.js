@@ -30,28 +30,6 @@ function changeColorAndText() {
 }
 setInterval(changeColorAndText, 2000);
 
-
-
-
-
-
-// function outerFunction() {
-//     let count = -1;
-//     function innerFunction() {
-//         count++;
-//         return count;
-//     }
-
-//     return innerFunction;
-// }
-// const innerFunc = outerFunction();
-// console.log(innerFunc());
-// console.log(innerFunc());
-// console.log(innerFunc());
-
-
-
-
 function contentAnimateContainer() {
     let index = Math.floor(Math.random() * hobbies.length);
     animateContainer.innerHTML = `<div class='animateChild animateChildPic'>${hobbies[index][0]}</div><div class='animateChild animateChildText'>${hobbies[index][1]}</div>`;

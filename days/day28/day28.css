@@ -1,0 +1,88 @@
+body {
+    display: flex;
+    justify-content: center;
+}
+.container {
+    width: 600px;
+}
+h2 {
+    margin: 10px 0;
+}
+.inputContainer {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+.input {
+    width: 120px;
+    padding: 5px 0;
+}
+
+.addPlayer {
+    width: 80px;
+    padding: 5px;
+    cursor: pointer;
+}
+#warning {
+    display: none;
+    margin-bottom: 20px;
+    color: red;
+}
+
+/* ITEM */
+.singlItem {
+    width: 600px;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    background-color: rgb(245, 198, 183);
+    margin: 10px 0;
+}
+
+.nameAndDate {
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+.name,
+.date {
+    padding-left: 10px;
+    text-align: left;
+}
+.date {
+    font-size: 12px;
+    margin-top: 3px;
+    color: gray;
+}
+.country {
+    width: 170px;
+    text-align: left;
+}
+.score {
+    width: 50px;
+    margin-left: 30px;
+}
+.buttonsContainer {
+    width: 105px;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-left: 60px;
+}
+.button {
+    height: 30px;
+    width: 30px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+	transition: background 0.4s;
+}
+.button:hover {
+    background: rgb(255, 251, 188);
+}
+.del {
+    color: red;
+    font-size: 22px;
+}
