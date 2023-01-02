@@ -22,7 +22,7 @@ function addItem() {
         inputScore.value = '';
         return;
     }
-    singlItem = ` <li class='singlItem'>
+    singlItem = `       <li class='singlItem'>
                             <div class="nameAndDate">
                                 <div class="name">${inputName.value} ${inputLastName.value}</div>
                                 <div class="date">${showDate()}</div>
@@ -39,29 +39,29 @@ function addItem() {
     
     itemsContainer.insertAdjacentHTML('afterbegin', singlItem);
 
-    let delButtons = document.querySelectorAll(".del");
     let allMinuses = document.querySelectorAll(".minus");
     let allPluses = document.querySelectorAll(".plus");
 
-    delButtons.forEach(element => {
-        element.addEventListener('click', function() {
-            let parent = element.closest('.singlItem');
-            parent.remove();
-        });
-    });
 
     allMinuses.forEach(element => {
         element.addEventListener('click', function() {
-            let button = document.querySelector(".minus");
-            let score = button.parentElement.previousElementSibling;
-            score.innerHTML = +score.innerHTML - 5;
+            // let parent = element.closest('.singlItem').querySelector(".score");
+            // console.log(element.parentNode);
+            // parent.innerHTML = +parent.innerHTML - 5;
         });
     });
     allPluses.forEach(element => {
         element.addEventListener('click', function() {
-            let button = document.querySelector(".plus");
-            let score = button.parentElement.previousElementSibling;
-            score.innerHTML = +score.innerHTML + 5;
+            let parent = element.closest('.acb');
+            parent.innerHTML = +parent.innerHTML + 5;
+        });
+    });
+
+    let delButtons = document.querySelectorAll(".del");
+    delButtons.forEach(element => {
+        element.addEventListener('click', function() {
+            let parent = element.closest('.singlItem');
+            parent.remove();
         });
     });
 }
