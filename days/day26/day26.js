@@ -214,6 +214,7 @@ const azButton = document.createElement("button");
 const searchContainer = document.createElement("div");
 const searchIcon = document.createElement("div");
 const searchInput = document.createElement("input");
+searchInput.setAttribute('id', 'searchInput');
 searchInput.placeholder = "Search country...";
 
 body.style.display = "flex";
@@ -242,6 +243,7 @@ subtitle.textContent = `Total Number of countries ${countries.length}`;
 flex(buttonsContainer);
 buttonsContainer.style.gap = "10px";
 startingWordButton.textContent = "STARTING WORLD";
+startingWordButton.classList.add('active');
 anyWordButton.textContent = "SEARCH WITH ANY WORD";
 azButton.innerHTML = "⇅";
 // azButton.innerHTML = '<i class="fa-solid fa-arrow-up-a-z"></i>';
@@ -304,99 +306,75 @@ function cardStyles(card) {
 }
 
 // search word func
-startingWordButton.addEventListener("click", searchWorld);
-function searchWorld() {
-    bottomContainer.innerHTML = "";
-    let searchInputValue = searchInput.value.toLowerCase();
-    if (searchInput.value !== "") {
+searchInput.addEventListener('input', (event) => {
+    const searchValue = event.target.value.toLowerCase();
+    if (searchValue == "") {
+        bottomContainer.innerHTML = "";
+        dinamicReloadCardsFull();
+    }
+    if (searchValue !=="" && startingWordButton.classList.contains('active'))  {
+        bottomContainer.innerHTML = "";
         for (let country of countries) {
             let countryName = country.toLowerCase();
 
-            if (countryName.startsWith(`${searchInputValue}`)) {
+            if (countryName.startsWith(`${searchValue}`)) {
                 const card = document.createElement("div");
                 card.textContent = country;
                 cardStyles(card);
                 bottomContainer.appendChild(card);
             }
         }
+        info.innerHTML = `Countries starts with <span style="color:red; font-style: italic">${searchInput.value}</span> are <span style='color:green'>${bottomContainer.childNodes.length}</span>`;
     }
-    info.innerHTML = `Countries starts with <span style="color:red; font-style: italic">${searchInput.value}</span> are <span style='color:green'>${bottomContainer.childNodes.length}</span>`;
-}
 
-anyWordButton.addEventListener("click", includesWorld);
-function includesWorld() {
-    bottomContainer.innerHTML = "";
-    let searchInputValue = searchInput.value.toLowerCase();
-    if (searchInput.value !== "") {
+    if (searchValue !=="" && anyWordButton.classList.contains('active'))  {
+        bottomContainer.innerHTML = "";
         for (let country of countries) {
             let countryName = country.toLowerCase();
 
-            if (countryName.includes(`${searchInputValue}`)) {
+            if (countryName.includes(`${searchValue}`)) {
                 const card = document.createElement("div");
                 card.textContent = country;
                 cardStyles(card);
                 bottomContainer.appendChild(card);
             }
         }
+        info.innerHTML = `Countries starts with <span style="color:red; font-style: italic">${searchInput.value}</span> are <span style='color:green'>${bottomContainer.childNodes.length}</span>`;
     }
-    info.innerHTML = `Countries containig <span style="color:red;
-    font-style: italic">${searchInput.value}</span> are <span style='color:green'>${bottomContainer.childNodes.length}</span>`;
-}
 
+    
+});
 
+//add active class for buttons
+startingWordButton.addEventListener('click', ()=> {
+    startingWordButton.classList.toggle('active');
+    anyWordButton.classList.remove('active');
+});
+anyWordButton.addEventListener('click', ()=> {
+    anyWordButton.classList.toggle('active');
+    startingWordButton.classList.remove('active');
+});
+azButton.addEventListener("click", sortAZ);
+//
 
 function dinamicReloadCardsFull() {
 	if (searchInput.value == "") {
 		for (let country of countries) {
-            
             info.innerHTML = '';
             const card = document.createElement("div");
             card.textContent = country;
             cardStyles(card);
             bottomContainer.appendChild(card);
-            
         }
-        
 	}
-    
 }
-dinamicReloadCardsFull()
-
-// let aa = setInterval(function dinamicReloadCardsFull() {
-//     if (searchInput.value == "") {
-//         for (let country of countries) {
-//             info.innerHTML = "";
-//             const card = document.createElement("div");
-//             card.textContent = country;
-//             cardStyles(card);
-//             bottomContainer.appendChild(card);
-//         }
-//     }
-//     // if (bottomContainer.childNodes.length === 193) {
-//     // }
-// }, 500);
+dinamicReloadCardsFull();
 
 
 
 
-
-function flex(elem) {
-    elem.style.display = "flex";
-    elem.style.justifyContent = "center";
-    elem.style.alignItems = "center";
-}
-
-function buttonsStyles(elem) {
-    elem.style.cursor = "pointer";
-    elem.style.border = "none";
-    elem.style.color = "white";
-    elem.style.padding = "10px";
-    elem.style.margin = "10px 0";
-    elem.style.backgroundImage = "linear-gradient(to right, #b151e9 , #8a3fb6)";
-}
-
-azButton.addEventListener("click", sortAZ);
 function sortAZ() {
+    azButton.classList.toggle('active');
     let names = [];
     for (let i = 0; i < bottomContainer.childNodes.length; i++) {
         names.push(bottomContainer.childNodes[i].innerHTML);
@@ -405,4 +383,17 @@ function sortAZ() {
     for (let i = 0; i < bottomContainer.childNodes.length; i++) {
         bottomContainer.childNodes[i].textContent = namesReverse[i];
     }
+}
+function flex(elem) {
+    elem.style.display = "flex";
+    elem.style.justifyContent = "center";
+    elem.style.alignItems = "center";
+}
+function buttonsStyles(elem) {
+    elem.style.cursor = "pointer";
+    elem.style.border = "none";
+    elem.style.color = "white";
+    elem.style.padding = "10px";
+    elem.style.margin = "10px 0";
+    elem.style.backgroundImage = "linear-gradient(to right, #b151e9 , #8a3fb6)";
 }

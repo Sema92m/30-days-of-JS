@@ -26,5 +26,9 @@ section h2 {
 }
 
 
+.active {
+	background-image: linear-gradient(to right, rgb(136, 0, 214), rgb(101, 0, 160)) !important;
+}
+
 
 
