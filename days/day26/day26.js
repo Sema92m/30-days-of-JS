@@ -313,46 +313,52 @@ searchInput.addEventListener('input', (event) => {
         dinamicReloadCardsFull();
     }
     if (searchValue !=="" && startingWordButton.classList.contains('active'))  {
-        bottomContainer.innerHTML = "";
-        for (let country of countries) {
-            let countryName = country.toLowerCase();
-
-            if (countryName.startsWith(`${searchValue}`)) {
-                const card = document.createElement("div");
-                card.textContent = country;
-                cardStyles(card);
-                bottomContainer.appendChild(card);
-            }
-        }
-        info.innerHTML = `Countries starts with <span style="color:red; font-style: italic">${searchInput.value}</span> are <span style='color:green'>${bottomContainer.childNodes.length}</span>`;
+        startsWithButon();
     }
-
     if (searchValue !=="" && anyWordButton.classList.contains('active'))  {
-        bottomContainer.innerHTML = "";
-        for (let country of countries) {
-            let countryName = country.toLowerCase();
-
-            if (countryName.includes(`${searchValue}`)) {
-                const card = document.createElement("div");
-                card.textContent = country;
-                cardStyles(card);
-                bottomContainer.appendChild(card);
-            }
-        }
-        info.innerHTML = `Countries starts with <span style="color:red; font-style: italic">${searchInput.value}</span> are <span style='color:green'>${bottomContainer.childNodes.length}</span>`;
+        includesButton();
     }
-
-    
 });
+
+
+function startsWithButon() {
+    bottomContainer.innerHTML = "";
+    for (let country of countries) {
+        let countryName = country.toLowerCase();
+        if (countryName.startsWith(`${searchInput.value}`)) {
+            const card = document.createElement("div");
+            card.textContent = country;
+            cardStyles(card);
+            bottomContainer.appendChild(card);
+        }
+    }
+    info.innerHTML = `Countries starts with <span style="color:red; font-style: italic">${searchInput.value}</span> are <span style='color:green'>${bottomContainer.childNodes.length}</span>`;
+}
+
+function includesButton() {
+    bottomContainer.innerHTML = "";
+    for (let country of countries) {
+        let countryName = country.toLowerCase();
+        if (countryName.includes(`${searchInput.value}`)) {
+            const card = document.createElement("div");
+            card.textContent = country;
+            cardStyles(card);
+            bottomContainer.appendChild(card);
+        }
+    }
+    info.innerHTML = `Countries containing <span style="color:red; font-style: italic">${searchInput.value}</span> are <span style='color:green'>${bottomContainer.childNodes.length}</span>`;
+}
 
 //add active class for buttons
 startingWordButton.addEventListener('click', ()=> {
     startingWordButton.classList.toggle('active');
     anyWordButton.classList.remove('active');
+    startsWithButon();
 });
 anyWordButton.addEventListener('click', ()=> {
     anyWordButton.classList.toggle('active');
     startingWordButton.classList.remove('active');
+    includesButton();
 });
 azButton.addEventListener("click", sortAZ);
 //
