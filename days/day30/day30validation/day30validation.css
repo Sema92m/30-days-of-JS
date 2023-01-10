@@ -1,0 +1,48 @@
+.validation-wrappper{
+	width: 400px;
+	margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+h1{
+	margin-bottom: 15px;
+}
+input {
+	width: 400px;
+	height: 35px;
+	margin-bottom: 10px;
+	text-align: left;
+	padding-left: 10px;
+	border: 1px solid black;
+	border-radius: 5px;
+}
+label{
+	display: flex;
+	margin: 5px 0;
+	font-weight: bold;
+}
+h4 {
+	display: none;
+	color: rgb(255, 200, 47);
+	font-size: 15px;
+	text-align: left;
+	margin-bottom: 15px;
+	font-weight: normal;
+}
+
+#button-submit{
+	width: 150px;
+	height: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 25px;
+	padding: 0;
+	border: none;
+	border-radius: 5px;
+	background-color: grey;
+	color: white;
+	cursor: pointer;
+}

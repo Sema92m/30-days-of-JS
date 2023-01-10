@@ -237,7 +237,6 @@ topContainer.style.backgroundRepeat = "no-repeat";
 
 title.textContent = "WORLD COUNTRIES LIST";
 subtitle.textContent = `Total Number of countries ${countries.length}`;
-// info.textContent = `Countries containing ${searchInput}!!!`;
 
 //topContainer // buttons Container
 flex(buttonsContainer);
@@ -246,7 +245,6 @@ startingWordButton.textContent = "STARTING WORLD";
 startingWordButton.classList.add('active');
 anyWordButton.textContent = "SEARCH WITH ANY WORD";
 azButton.innerHTML = "⇅";
-// azButton.innerHTML = '<i class="fa-solid fa-arrow-up-a-z"></i>';
 
 buttonsStyles(startingWordButton);
 buttonsStyles(anyWordButton);
@@ -375,9 +373,6 @@ function dinamicReloadCardsFull() {
 	}
 }
 dinamicReloadCardsFull();
-
-
-
 
 function sortAZ() {
     azButton.classList.toggle('active');
