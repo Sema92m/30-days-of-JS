@@ -5,6 +5,14 @@ body {
 #mainContainer {
     margin: 10px;
 }
+.subheader{
+    font-size: 10px;
+    margin: 5px 0;
+}
+.countries-count{
+    color: orange;
+    font-weight: normal;
+}
 .wrapper {
     display: flex;
     flex-wrap: wrap;
@@ -12,7 +20,7 @@ body {
     margin: 15px 0;
 }
 #mainInput {
-    width: 70%;
+    width: 450px;
     height: 30px;
     margin: 10px 0;
     border-radius: 15px;
