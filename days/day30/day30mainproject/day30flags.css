@@ -14,6 +14,7 @@ body {
     font-weight: normal;
 }
 .wrapper {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -37,14 +38,18 @@ body {
     font-size: 13px;
     border-radius: 3px;
     background-color: rgb(254, 255, 255);
+    z-index: 2;
+}
+.card:hover {
+    box-shadow: 4px 4px 4px rgba(255, 166, 0, 0.11); 
 }
 
 .flag {
     width: 90px;
     height: 50px;
-    background-repeat: no-repeat;
+    background: no-repeat center;
     background-size: contain;
-    background-position: center;
+    
 }
 
 .country-name {
@@ -104,4 +109,20 @@ body {
     border: none;
     font-size: 25px;
     cursor: pointer;
+}
+
+.spinner {
+    position: absolute;
+    z-index: 1;
+    top: 100px;
+    animation: spinnerRotate 4s infinite linear;
+    transition: animation 0.5s;
+}
+@keyframes spinnerRotate {
+    0% {
+        rotate: 0deg;
+    }
+    100% {
+        rotate: 360deg;
+    }
 }
