@@ -102,15 +102,19 @@ body {
 }
 .button:hover {
     box-shadow:  1px 1px 2px gray;
+    scale: 1.05;
 }
 .active1 {
-    background-color: rgb(255, 167, 3);
+    background-color: rgb(255, 189, 66);
 }
 #sort-button{
-    color: orange;
+    color: rgba(255, 173, 20, 0.616);
     border: none;
     font-size: 25px;
     cursor: pointer;
+}
+#sort-button:hover{
+    scale: 1.1;
 }
 
 
