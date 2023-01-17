@@ -23,8 +23,8 @@ fetch(url)
             if(!data[i].languages || data[i].languages == undefined){
                 data[i].languages = '';
             }
-            let langs = (Object.values(data[i].languages).slice(0,8)).toString().replace(/,/g, ', ');
-            countries.push([data[i].name.common,(data[i].capital[0]).toString(),data[i].population,data[i].flags.png, langs]);
+            let langs = (Object.values(data[i].languages).slice(0,5)).toString().replace(/,/g, ', ');
+            countries.push([data[i].name.common,(data[i].capital[0]).toString(),data[i].population,data[i].flags.svg, langs]);
         }
         reloadCards(countries);
         subheader.textContent = `Currently, we have ${countries.length} countries`;
@@ -55,61 +55,112 @@ function reloadCards(arr) {
 }
 
 
+searchInput.addEventListener('input', searchFunc);
 
-
-
-searchInput.addEventListener('input', (event) => {
-    const searchValue = event.target.value.toLowerCase().trim();
-    if (searchValue === "") {
-        wrapper.innerHTML = '';
-        searchCountryAndCapitalFromInput = countries;
+function searchFunc() {
+    wrapper.innerHTML = '';
+    if(searchInput.value === '') {
         reloadCards(countries);
     }
-    if (searchValue !== "")  {
-        wrapper.innerHTML = '';
-        createCardFromInputSearch();
-    } 
-});
+    if(searchInput.value !== '') {
+        createCardFromInput();
+    }
+}
 
-
-function createCardFromInputSearch() {
-    // searchCountryAndCapitalFromInput.length = 0;
+function createCardFromInput() {
+    searchCountryAndCapitalFromInput.length = 0;
     for(let country of countries) {
         let countryName = country[0].toLowerCase();
         let countryCapital = country[1].toLowerCase();
         if (countryName.startsWith(`${searchInput.value}`) || 
-        countryCapital.startsWith(`${searchInput.value}`) || 
-        countryName.includes(`${searchInput.value}`) ||
-        countryCapital.includes(`${searchInput.value}`)) {
+        countryCapital.startsWith(`${searchInput.value}`)) {
             searchCountryAndCapitalFromInput.push(country);
         }
     }
-    
     reloadCards(searchCountryAndCapitalFromInput);
 }
 
-// function sortByName() {
-//     searchCountryAndCapitalFromInput.sort( (a, b) => a.localeCompare(b) );
-// }
-// function sortByCapital() {
-//     searchCountryAndCapitalFromInput.sort((a,b) => b[1] - a[1]);
 
-//     console.log( searchCountryAndCapitalFromInput.sort((a,b) => b[1] - a[1]));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// searchInput.addEventListener('input', (event) => {
+//     const searchValue = event.target.value.toLowerCase().trim();
+//     if (searchValue === "") {
+//         searchCountryAndCapitalFromInput = countries;
+//         wrapper.innerHTML = '';
+//         reloadCards(searchCountryAndCapitalFromInput);
+//     }
+//     if (searchValue !== "")  {
+//         wrapper.innerHTML = '';
+//         createCardFromInputSearch();
+//     } 
+// });
+
+
+// function createCardFromInputSearch() {
+//     for(let country of countries) {
+//         let countryName = country[0].toLowerCase();
+//         let countryCapital = country[1].toLowerCase();
+//         if (countryName.startsWith(`${searchInput.value}`) || 
+//         countryCapital.startsWith(`${searchInput.value}`)) {
+//             searchCountryAndCapitalFromInput.push(country);
+//         }
+//     }
+//     reloadCards(searchCountryAndCapitalFromInput);
+//     searchCountryAndCapitalFromInput.length = 0;
 // }
 
-function sortByPopulation() {
-    populationButton.classList.toggle('active1');
-    populationButton.textContent = 'POPULATION ↑';
-    if (wrapper.children.length === 250 && populationButton.classList.contains('active1')) {
-        wrapper.innerHTML = '';
-        reloadCards(countries.sort((a,b) => b[2] - a[2]));
-        populationButton.textContent = 'POPULATION ↑';
-    }
-    if (wrapper.children.length === 250 && !populationButton.classList.contains('active1')) {
-        wrapper.innerHTML = '';
-        reloadCards(countries.sort((a,b) => a[2] - b[2]));
-        populationButton.textContent = 'POPULATION ↓';
-    }
+
+// function sortByPopulation() {
+//     populationButton.classList.toggle('active1');
+//     populationButton.textContent = 'POPULATION ↑';
+//     if (wrapper.children.length === 250 && populationButton.classList.contains('active1')) {
+//         wrapper.innerHTML = '';
+//         reloadCards(countries.sort((a,b) => b[2] - a[2]));
+//         populationButton.textContent = 'POPULATION ↑';
+//     }
+//     if (wrapper.children.length === 250 && !populationButton.classList.contains('active1')) {
+//         wrapper.innerHTML = '';
+//         reloadCards(countries.sort((a,b) => a[2] - b[2]));
+//         populationButton.textContent = 'POPULATION ↓';
+//     }
     // if ((searchCountryAndCapitalFromInput.length === 0 || !searchCountryAndCapitalFromInput) && populationButton.classList.contains('active1')) {
     //     wrapper.innerHTML = '';
     //     reloadCards(countries.sort((a,b) => b[2] - a[2]));
@@ -119,21 +170,21 @@ function sortByPopulation() {
     //     reloadCards(countries.sort((a,b) => a[2] - b[2]));
     //     populationButton.textContent = 'POPULATION ↓';
     // }
-    if ((searchCountryAndCapitalFromInput.length > 0) && populationButton.classList.contains('active1')) {
-        wrapper.innerHTML = '';
-        reloadCards(searchCountryAndCapitalFromInput.sort((a,b) => b[2] - a[2]));
-        populationButton.textContent = 'POPULATION ↑';
-    } 
-    if ((searchCountryAndCapitalFromInput.length > 0) && !populationButton.classList.contains('active1')) {
-        wrapper.innerHTML = '';
-        reloadCards(searchCountryAndCapitalFromInput.sort((a,b) => a[2] - b[2]));
-        populationButton.textContent = 'POPULATION ↓';
-    }
-}  
+//     if ((searchCountryAndCapitalFromInput.length < 250) && populationButton.classList.contains('active1')) {
+//         wrapper.innerHTML = '';
+//         reloadCards(searchCountryAndCapitalFromInput.sort((a,b) => b[2] - a[2]));
+//         populationButton.textContent = 'POPULATION ↑';
+//     } 
+//     if ((searchCountryAndCapitalFromInput.length < 250) && !populationButton.classList.contains('active1')) {
+//         wrapper.innerHTML = '';
+//         reloadCards(searchCountryAndCapitalFromInput.sort((a,b) => a[2] - b[2]));
+//         populationButton.textContent = 'POPULATION ↓';
+//     }
+// }  
 
 // nameButton.addEventListener('click', sortByName);
 // capitalButton.addEventListener('click', sortByCapital);
-populationButton.addEventListener('click', sortByPopulation);
+// populationButton.addEventListener('click', sortByPopulation);
 
 
 
