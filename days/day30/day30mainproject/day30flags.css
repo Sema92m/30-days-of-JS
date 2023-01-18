@@ -7,6 +7,7 @@ body {
 }
 .subheader{
     font-size: 10px;
+    font-weight: normal;
     margin: 5px 0;
 }
 .countries-count{
@@ -134,4 +135,37 @@ body {
     100% {
         rotate: 360deg;
     }
+}
+
+
+/*statistic */
+.statistic-button{
+    width: 80px;
+    height: 20px;
+    padding: 3px 10px;
+    font-size: 8px;
+    border: none;
+    background-color: rgb(255, 179, 39);
+    cursor: pointer;
+}
+.statistics{
+    margin: 0 auto;
+    width: 500px;
+}
+.statistics-block{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 10px;
+}
+.statistics-block-name{
+    font-size: 10px;
+}
+.statistics-block-percentage{
+    width: 400px;
+    height: 15px;
+    background-color: rgb(255, 179, 39);
+}
+#statistics-block-percentage-world{
+    width: 400px;
 }

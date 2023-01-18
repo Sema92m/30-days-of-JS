@@ -12,10 +12,18 @@ const capitalButton = document.querySelector("#capital-button");
 const populationButton = document.querySelector("#population-button");
 const sortButton = document.querySelector("#sort-button");
 
+//statistic
+const statisticContainer = document.querySelector(".statistic-continer");
+const worldPopulation = document.querySelector("#statistics-block-population-world");
+const statistics = document.querySelector(".statistics");
+const statisticButtonPopulation = document.querySelector("#statistic-button-population");
+const statisticButtonLanguages = document.querySelector("#statistic-button-languages");
+
 
 fetch(url)
     .then((response) => response.json())
     .then((data) => {
+        data = data.slice(0,5);
         for (let i = 0; i < data.length; i++) {
             if (data[i].capital === undefined || !data[i].capital) {
                 data[i].capital = ['None capital'];
@@ -26,6 +34,7 @@ fetch(url)
             let langs = (Object.values(data[i].languages).slice(0,5)).toString().replace(/,/g, ', ');
             countries.push([data[i].name.common,(data[i].capital[0]).toString(),data[i].population,data[i].flags.svg, langs]);
         }
+        worldPopulation.textContent =  countries.map(elem => elem[2]).reduce((sum,cur)=> sum + cur).toLocaleString("en-US");
         reloadCards(countries);
         subheader.textContent = `Currently, we have ${countries.length} countries`;
         countriesCountH5.textContent = `${wrapper.childElementCount} countries satisfied the search criteria`;
@@ -33,7 +42,6 @@ fetch(url)
         
     })
     .catch((error) => console.error(error));
-
 
 function reloadCards(arr) {
     arr.forEach((element) => {
@@ -176,20 +184,21 @@ function sortNameOrCapitalArrowUP(arr,button,numOfArrayElem) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//statistic
+statisticButtonPopulation.addEventListener('click', updateStatistic);
+function updateStatistic() {
+    console.log(Array.from(wrapper.children));
+    let arrFronWrapperCards = Array.from(wrapper.children);
+    console.log((arrFronWrapperCards.forEach(elem => elem.children)));
+    let block = `
+                    <div class="statistics-block">
+                        <div class="statistics-block-name"></div>
+                        <div class="statistics-block-percentage"></div>
+                        <div class="statistics-block-population"></div>
+                    </div>
+                `;
+    
+}
 
 
 
