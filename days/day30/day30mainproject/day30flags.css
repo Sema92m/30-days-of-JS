@@ -1,16 +1,15 @@
 body {
     background-color: rgb(240, 240, 240);
-
 }
 #mainContainer {
     margin: 10px;
 }
-.subheader{
+.subheader {
     font-size: 10px;
     font-weight: normal;
     margin: 5px 0;
 }
-.countries-count{
+.countries-count {
     color: orange;
     font-weight: normal;
 }
@@ -41,7 +40,7 @@ body {
     z-index: 2;
 }
 .card:hover {
-    box-shadow: 4px 4px 4px rgba(255, 166, 0, 0.11); 
+    box-shadow: 4px 4px 4px rgba(255, 166, 0, 0.11);
 }
 
 .flag {
@@ -49,7 +48,6 @@ body {
     height: 50px;
     background: no-repeat center;
     background-size: contain;
-    
 }
 
 .country-name {
@@ -80,9 +78,6 @@ body {
     margin: 3px 0;
 }
 
-
-
-
 /* buttons */
 .buttons {
     position: relative;
@@ -102,24 +97,21 @@ body {
     cursor: pointer;
 }
 .button:hover {
-    box-shadow:  1px 1px 2px gray;
+    box-shadow: 1px 1px 2px gray;
     scale: 1.05;
 }
 .active1 {
-    background-color: rgb(255, 189, 66);
+    background-color: rgb(253, 165, 0);
 }
-#sort-button{
+#sort-button {
     color: rgba(255, 173, 20, 0.616);
     border: none;
     font-size: 25px;
     cursor: pointer;
 }
-#sort-button:hover{
+#sort-button:hover {
     scale: 1.1;
 }
-
-
-
 
 .spinner {
     position: absolute;
@@ -137,9 +129,17 @@ body {
     }
 }
 
-
 /*statistic */
-.statistic-button{
+.statistic-buttons-subheader {
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+    background-color: white;
+}
+.statistic-button {
     width: 80px;
     height: 20px;
     padding: 3px 10px;
@@ -148,24 +148,45 @@ body {
     background-color: rgb(255, 179, 39);
     cursor: pointer;
 }
-.statistics{
-    margin: 0 auto;
-    width: 500px;
-}
-.statistics-block{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+
+.statistics-block, .statistics-block-1  {
+    width: 560px;
+    margin: 5px auto;
+    display: grid;
+    grid-template-columns: 90px 400px 70px;
+    row-gap: 10px;
     font-size: 10px;
 }
-.statistics-block-name{
+.statistics-block-1 {
+    margin: 10px auto;
+}
+.statistics-block-name {
+    padding-right: 10px;
+    text-align: left;
     font-size: 10px;
 }
-.statistics-block-percentage{
-    width: 400px;
+
+.percentage-container{
+    position: relative;
+}
+.statistics-block-percentage {
+    position: absolute;
+    width: 300px;
     height: 15px;
     background-color: rgb(255, 179, 39);
+    z-index: 3;
 }
-#statistics-block-percentage-world{
-    width: 400px;
+#statistics-block-percentage-world {
+    width: 100%;
+}
+.statistics-block-percentage-gray {
+    position: absolute;
+    width: 100%;
+    height: 15px;
+    background-color: rgb(240, 240, 240);
+    z-index: 2;
+}
+.statistics-block-population{
+    padding-left: 10px;
+    text-align: left;
 }

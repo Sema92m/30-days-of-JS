@@ -27,26 +27,31 @@
         <button id="name-button" class="button">NAME ⇅</button>
         <button id="capital-button" class="button">CAPITAL ⇅</button>
         <button id="population-button" class="button">POPULATION ⇅</button>
-        <button id="sort-button"><i class="fa-solid fa-chart-line"></i></button>
+        <a href="#statistic-continer" id="sort-button"><i class="fa-solid fa-chart-line"></i></a>
         <img class="spinner" src=".//days/day30/day30mainproject/spinner.png" alt="spinner">
 
     </div>
 
-    <div class="wrapper">
-        <!--cards there -->
-    </div>
+    <div class="wrapper"></div>
     <div id="statistic-continer" class="statistic-continer">
-        <div class="buttons">
-            <button id="statistic-button-population" class="statistic-button">POPLATION</button>
-            <button id="statistic-button-languages" class="statistic-button">LANGUAGES</button>
+        <div class="statistic-buttons-subheader">
+            <div class="buttons">
+                <button id="statistic-button-population" class="statistic-button">POPLATION</button>
+                <button id="statistic-button-languages" class="statistic-button">LANGUAGES</button>
+            </div>
+            <h3 class="subheader">WORLD POPULATION</h3>
         </div>
-        <h3 class="subheader">WORLD POPULATION</h3>
-        <div class="statistics">
-            <div class="statistics-block">
+        <div>
+            <div class="statistics-block-1">
                 <div id="statistics-block-name-world" class="statistics-block-name">WORLD</div>
-                <div id="statistics-block-percentage-world " class="statistics-block-percentage"></div>
+                <div class="percentage-container">
+                    <div id="statistics-block-percentage-world" class="statistics-block-percentage"></div>
+                    <div id="statistics-block-percentage-world-gray" class="statistics-block-percentage-gray"></div>
+                </div>
                 <div id="statistics-block-population-world" class="statistics-block-population"></div>
             </div>
+        </div>
+        <div class="statistics">
         </div>
     </div>
 </div>

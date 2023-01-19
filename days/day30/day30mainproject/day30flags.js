@@ -23,7 +23,7 @@ const statisticButtonLanguages = document.querySelector("#statistic-button-langu
 fetch(url)
     .then((response) => response.json())
     .then((data) => {
-        data = data.slice(0,5);
+        // data = data.slice(0,4);
         for (let i = 0; i < data.length; i++) {
             if (data[i].capital === undefined || !data[i].capital) {
                 data[i].capital = ['None capital'];
@@ -59,7 +59,9 @@ function reloadCards(arr) {
             `;
         wrapper.appendChild(card);
         countriesCountH5.textContent = `${wrapper.children.length} countries satisfied the search criteria`;
+        
     });
+    updateStatistic();
 }
 
 
@@ -185,21 +187,28 @@ function sortNameOrCapitalArrowUP(arr,button,numOfArrayElem) {
 
 
 //statistic
-statisticButtonPopulation.addEventListener('click', updateStatistic);
 function updateStatistic() {
-    console.log(Array.from(wrapper.children));
-    let arrFronWrapperCards = Array.from(wrapper.children);
-    console.log((arrFronWrapperCards.forEach(elem => elem.children)));
-    let block = `
-                    <div class="statistics-block">
-                        <div class="statistics-block-name"></div>
-                        <div class="statistics-block-percentage"></div>
-                        <div class="statistics-block-population"></div>
-                    </div>
-                `;
-    
+    statistics.innerHTML = '';
+    let arrFronWrapperCards = Array.from(wrapper.childNodes).slice(0,10);
+    arrFronWrapperCards.forEach((elem) => {
+        const block = document.createElement("div");
+        block.classList.add('statistics-block');
+        let worldPopulationNumber = +worldPopulation.textContent.replace(/,/g, '');
+        let countryPopulation = +(elem.children[2].children[1].textContent).replace(/\D/gi,'');
+        let countryBlockWidth = ((countryPopulation/worldPopulationNumber)*100).toFixed(2);
+        block.innerHTML = `
+                            <div class="statistics-block-name">${elem.children[1].textContent}</div>
+                            <div class="percentage-container">
+                                <div class="statistics-block-percentage" style='width:${countryBlockWidth}%'></div>
+                                <div class="statistics-block-percentage-gray"></div>
+                            </div>
+                            <div class="statistics-block-population">
+                            ${countryPopulation.toLocaleString()}</div>
+                        `;
+                statistics.appendChild(block);
+    });    
 }
-
+//statistic
 
 
 function spinnerDisplayNone() {
