@@ -161,26 +161,46 @@ function sortByPopulation() {
 function sortPopulationArrowUP(arr,button) {
         arr.sort((a, b) => a[2] - b[2]);
         wrapper.innerHTML = '';
-        button.textContent = `${button.textContent.slice(0,-1)} ↓`;
-        reloadCards(arr);   
+        button.textContent = `POPULATION ⬇`;
+        nameButton.textContent = 'NAME ';
+        capitalButton.textContent = 'CAPITAL ';  
+        reloadCards(arr);
 }
 function sortPopulationArrowDOWN(arr,button) {
         arr.sort((a, b) => b[2] - a[2]);
         wrapper.innerHTML = '';
-        button.textContent = `${button.textContent.slice(0,-1)} ↑`;
+        button.textContent = `POPULATION ⬆`;
+        nameButton.textContent = 'NAME ';
+        capitalButton.textContent = 'CAPITAL ';  
         reloadCards(arr);   
 }
 
 function sortNameOrCapitalArrowDOWN(arr,button,numOfArrayElem) {
         arr.sort((a, b) => a[numOfArrayElem].localeCompare(b[numOfArrayElem]));
         wrapper.innerHTML = '';
-        button.textContent = `${button.textContent.slice(0,-1)} ↑`;
-        reloadCards(arr);   
+        button.textContent = `${button.textContent.slice(0,-1)} ⬆`;
+        if(button == nameButton ) {
+            capitalButton.textContent = 'CAPITAL ';
+            populationButton.textContent = 'POPULATION';
+        }
+        if(button == capitalButton ) {
+            nameButton.textContent = 'NAME ';
+            populationButton.textContent = 'POPULATION'; 
+        }
+        reloadCards(arr);
 }
 function sortNameOrCapitalArrowUP(arr,button,numOfArrayElem) {
         arr.sort((a, b) => b[numOfArrayElem].localeCompare(a[numOfArrayElem]));
         wrapper.innerHTML = '';
-        button.textContent = `${button.textContent.slice(0,-1)} ↓`;
+        button.textContent = `${button.textContent.slice(0,-1)} ⬇`;
+        if(button == nameButton ) {
+            capitalButton.textContent = 'CAPITAL '; 
+            populationButton.textContent = 'POPULATION';
+        }
+        if(button == capitalButton ) {
+            nameButton.textContent = 'NAME ';
+            populationButton.textContent = 'POPULATION'; 
+        }
         reloadCards(arr);   
 }
 
