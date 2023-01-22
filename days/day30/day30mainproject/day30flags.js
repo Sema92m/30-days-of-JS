@@ -24,12 +24,14 @@ const statisticButtonPopulation = document.querySelector(
 const statisticButtonLanguages = document.querySelector(
     "#statistic-button-languages"
 );
+const statisticSubheader = document.querySelector("#statistic-subheader");
 const footer = document.querySelector(".footer");
 
 
 fetch(url)
     .then((response) => response.json())
     .then((data) => {
+        // data = data.slice(0,10);
         for (let i = 0; i < data.length; i++) {
             if (data[i].capital === undefined || !data[i].capital) {
                 data[i].capital = ["None capital"];
@@ -38,7 +40,7 @@ fetch(url)
                 data[i].languages = "";
             }
             let langs = Object.values(data[i].languages);
-            console.log(data[i].name.common,langs.length);
+            // console.log(data[i].name.common,langs.length);
             countries.push([
                 data[i].name.common,
                 data[i].capital[0].toString(),
@@ -281,11 +283,17 @@ function sortNameOrCapitalArrowUP(arr, button, numOfArrayElem) {
 //statistic
 statisticButtonPopulation.addEventListener('click', updateStatistic);
 function updateStatistic() {
+    statistics.innerHTML = "";
+    worldPopulation.textContent = countries
+            .map((elem) => elem[2])
+            .reduce((sum, cur) => sum + cur)
+            .toLocaleString("en-US");
+    statisticSubheader.textContent = 'WORLD POPULATION';
     footer.style.display = 'block';
     statisticContainer.style.display = 'block';
-    statistics.innerHTML = "";
-    let arrFronWrapperCards = Array.from(wrapper.childNodes).slice(0, 10);
-    arrFronWrapperCards.forEach((elem) => {
+    let arrFromWrapperCards = Array.from(wrapper.childNodes).slice(0, 10);
+
+    arrFromWrapperCards.forEach((elem) => {
         const block = document.createElement("div");
         block.classList.add("statistics-block");
         let worldPopulationNumber = +worldPopulation.textContent.replace(
@@ -312,7 +320,80 @@ function updateStatistic() {
         statistics.appendChild(block);
     });
 }
+
+statisticButtonLanguages.addEventListener('click', updateStatisticLanguages);
+
+
+
+
+
+function updateStatisticLanguages() {
+    statistics.innerHTML = "";
+    statisticSubheader.textContent = 'WORLD LANGUAGES';
+    footer.style.display = 'block';
+    statisticContainer.style.display = 'block';
+
+    let languageCount = countries.map(elem => +elem[4].length).reduce((sum, cur) => sum + cur);
+    let arrFronWrapperCards = Array.from(wrapper.childNodes).slice(0, 10);
+    worldPopulation.textContent = languageCount;
+    let a = [];
+
+
+let languageCount2 = (countries.map(elem => (elem[4])));
+console.log(languageCount2);
+
+    arrFronWrapperCards.forEach((elem) => {
+        const block = document.createElement("div");
+        block.classList.add("statistics-block");
+        
+        let countryLanguage =
+            elem.children[2].children[2].textContent.replace(/Languages: /, '').split( ',').length;
+
+        let countryBlockWidth = (
+            (countryLanguage / languageCount) *
+            100
+        ).toFixed(1);
+
+        block.innerHTML = `
+                            <div class="statistics-block-name">${
+                                elem.children[1].textContent
+                            }</div>
+                            <div class="percentage-container">
+                                <div class="statistics-block-percentage" style='width:${countryBlockWidth}%'></div>
+                                <div class="statistics-block-percentage-gray"></div>
+                            </div>
+                            <div class="statistics-block-population">
+                            ${countryLanguage}</div>
+                        `;
+        statistics.appendChild(block);
+    });
+}
+
+
+
+
+
+
+
+
 //statistic
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function spinnerDisplayNone() {
     if (wrapper.children.length > 1) {
