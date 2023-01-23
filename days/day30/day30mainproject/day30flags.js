@@ -1,6 +1,8 @@
 const url = "https://restcountries.com/v3.1/all";
-let countries = [];
+let countries = [];//main arr includes main info from urlarr
 let searchCountryAndCapitalFromInput = [];
+let allLangArray = [];//used to count sum of all langs
+
 const wrapper = document.querySelector(".wrapper");
 const searchInput = document.querySelector("#mainInput");
 const subheader = document.querySelector(".subheader");
@@ -28,10 +30,10 @@ const statisticSubheader = document.querySelector("#statistic-subheader");
 const footer = document.querySelector(".footer");
 
 
+
 fetch(url)
     .then((response) => response.json())
     .then((data) => {
-        // data = data.slice(0,10);
         for (let i = 0; i < data.length; i++) {
             if (data[i].capital === undefined || !data[i].capital) {
                 data[i].capital = ["None capital"];
@@ -40,12 +42,13 @@ fetch(url)
                 data[i].languages = "";
             }
             let langs = Object.values(data[i].languages);
-            // console.log(data[i].name.common,langs.length);
+
+            allLangArray.push(langs); // create SET of sum unic langs
             countries.push([
                 data[i].name.common,
                 data[i].capital[0].toString(),
                 data[i].population,
-                data[i].flags.svg,
+                data[i].flags.png,
                 langs.toString().replace(/,/g, ", ")
             ]);
         }
@@ -60,23 +63,22 @@ fetch(url)
     })
     .catch((error) => console.error(error));
 
+
+
 function reloadCards(arr) {
     arr.forEach((element) => {
         const card = document.createElement("div");
         card.setAttribute("class", "card");
+
         card.innerHTML = `  
-                <img style='background-image: url(${
-                    element[3]
-                })' class="flag"></img>
-                <div class="country-name">${element[0]}</div>
-                <div class="country-info">
-                    <div class="capital">Capital: ${element[1]}</div>
-                    <div class="population">Population: ${element[2].toLocaleString(
-                        "en-US"
-                    )}</div>
-                    <div class="languages">Languages: ${element[4]}</div>
-                </div>
-            `;
+                            <img src='${element[3]}' class="flag" alt='${element[0]}'></img>
+                            <div class="country-name">${element[0]}</div>
+                            <div class="capital">Capital: ${element[1]}</div>
+                            <div class="population">Population: ${element[2].toLocaleString(
+                                "en-US"
+                            )}</div>
+                            <div class="languages">Languages: ${element[4]}</div>
+                        `;
         wrapper.appendChild(card);
         countriesCountH5.textContent = `${wrapper.children.length} countries satisfied the search criteria`;
     });
@@ -301,7 +303,7 @@ function updateStatistic() {
             ""
         );
         let countryPopulation =
-            +elem.children[2].children[1].textContent.replace(/\D/gi, "");
+            +elem.children[3].textContent.replace(/\D/gi, "");
         let countryBlockWidth = (
             (countryPopulation / worldPopulationNumber) *
             100
@@ -321,39 +323,30 @@ function updateStatistic() {
     });
 }
 
+
+
+
 statisticButtonLanguages.addEventListener('click', updateStatisticLanguages);
-
-
-
-
-
 function updateStatisticLanguages() {
     statistics.innerHTML = "";
     statisticSubheader.textContent = 'WORLD LANGUAGES';
     footer.style.display = 'block';
     statisticContainer.style.display = 'block';
 
-    let languageCount = countries.map(elem => +elem[4].length).reduce((sum, cur) => sum + cur);
-    let arrFronWrapperCards = Array.from(wrapper.childNodes).slice(0, 10);
-    worldPopulation.textContent = languageCount;
-    let a = [];
+    let arrFromWrapperCards = Array.from(wrapper.childNodes).slice(0, 10);
+    let worldLanguages = Array.from(new Set(allLangArray.flat())).length;//sum of all unic langs
+    worldPopulation.textContent = worldLanguages;
 
-
-let languageCount2 = (countries.map(elem => (elem[4])));
-console.log(languageCount2);
-
-    arrFronWrapperCards.forEach((elem) => {
+    arrFromWrapperCards.forEach((elem) => {
         const block = document.createElement("div");
         block.classList.add("statistics-block");
         
         let countryLanguage =
-            elem.children[2].children[2].textContent.replace(/Languages: /, '').split( ',').length;
-
+            elem.children[3].textContent.replace(/Languages: /, '').split(',').length;
         let countryBlockWidth = (
-            (countryLanguage / languageCount) *
+            (countryLanguage / worldLanguages) *
             100
         ).toFixed(1);
-
         block.innerHTML = `
                             <div class="statistics-block-name">${
                                 elem.children[1].textContent

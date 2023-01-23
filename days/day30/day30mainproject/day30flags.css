@@ -1,3 +1,11 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+	text-align: center;
+}
+
 body {
     background-color: rgb(240, 240, 240);
     font-family: 'Trebuchet MS', sans-serif;
@@ -31,7 +39,7 @@ body {
 .card {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     width: 130px;
     min-height: 120px;
     margin: 5px 3px;
@@ -48,17 +56,19 @@ body {
 .flag {
     width: 90px;
     height: 50px;
+    margin: 0 auto;
     background: no-repeat center;
-    background-size: contain;
+    /* background-size: contain; */
+    border: 0.5px solid rgba(211, 211, 211, 0.836);
 }
 
 .country-name {
     font-family: Arial, sans-serif;
-    margin: 5px 0 2px;
-    color: orange;
+    margin: 3px auto;
+    color: #ffa500;
     font-size: 14px;
 }
-.country-info {
+/* .country-info {
     height: auto;
     width: 120px;
     display: flex;
@@ -66,22 +76,23 @@ body {
     justify-content: space-between;
     align-items: flex-start;
     font-size: 11px;
-}
+} */
 .capital {
     text-align: left;
+    font-size: 11px;
 }
 .languages {
     max-height: 78px;
     max-width: 110px;
     text-align: left;
-    /* overflow-wrap: break-word; */
-    /* white-space: nowrap; */
     overflow: hidden;
     text-overflow: ellipsis;
+    font-size: 11px;
 }
 .population {
     text-align: left;
     margin: 3px 0;
+    font-size: 11px;
 }
 
 /* buttons */
