@@ -1,67 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="Keywords" content="Countries,Flags,Languages" />
-    <meta name="Description" content="Easy to use country search and sort site" />
-    <meta name="theme-color" content="#ffa500"/>
-    <link rel="icon" type="image/x-icon" href="./days/day30/day30mainproject/flag.svg">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- <link rel="stylesheet" href="./style.css" /> -->
-    <!-- <link rel="stylesheet" href="./days/day27/day27.css" /> -->
-    <!-- <link rel="stylesheet" href="./days/day30/day30validation/day30validation.css" /> -->
-    <link rel="stylesheet" href="./days/day30/day30mainproject/day30flags.css"/>
-    <link rel="shortcut icon" href="!#" type="image/x-icon" />
-    <title>30 days of Javascript</title>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="Keywords" content="Countries,Flags,Languages" />
+  <meta name="Description" content="Easy to use country search and sort site" />
+  <meta name="theme-color" content="#ffa500" />
+  <link rel="icon" type="image/x-icon" href="./days/day30/day30mainproject/flag.svg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- <link rel="stylesheet" href="./style.css" /> -->
+  <!-- <link rel="stylesheet" href="./days/day27/day27.css" /> -->
+  <!-- <link rel="stylesheet" href="./days/day30/day30validation/day30validation.css" /> -->
+  <link rel="stylesheet" href="./days/day30/day30mainproject/day30flags.css" />
+  <link rel="shortcut icon" href="!#" type="image/x-icon" />
+  <title>30 days of Javascript</title>
 </head>
+
 <body>
-<!-- Day 30 MAIN -->
-<div id="mainContainer" class="container">
+  <!-- Day 30 MAIN -->
+  <div id="mainContainer" class="container">
     <h2>World Countries Data</h2>
     <h3 class="subheader"></h3>
     <h5 class="countries-count"></h5>
     <div>
-        <input id="mainInput" type="text" placeholder="Search country by name or capital...">
+      <input id="mainInput" type="text" placeholder="Search country by name or capital...">
     </div>
     <div class="buttons">
-        <button id="name-button" class="button">NAME </button>
-        <button id="capital-button" class="button">CAPITAL </button>
-        <button id="population-button" class="button">POPULATION</button>
-        <a href="#statistic-continer" id="sort-button" aria-label="sortButton"><i class="fa-solid fa-chart-line"></i></a>
-        <img class="spinner" src=".//days/day30/day30mainproject/spinner.png" alt="spinner">
+      <button id="name-button" class="button">NAME </button>
+      <button id="capital-button" class="button">CAPITAL </button>
+      <button id="population-button" class="button">POPULATION</button>
+      <a href="#statistic-continer" id="sort-button" aria-label="sortButton"><i class="fa-solid fa-chart-line"></i></a>
+      <img class="spinner" src=".//days/day30/day30mainproject/spinner.png" alt="spinner">
     </div>
     <div id="cards-inside" class="wrapper"></div>
     <div id="statistic-continer" class="statistic-continer">
-        <div class="statistic-buttons-subheader">
-            <div class="buttons">
-                <button id="statistic-button-population" class="statistic-button">POPLATION</button>
-                <button id="statistic-button-languages" class="statistic-button">LANGUAGES</button>
-            </div>
-            <h3 id="statistic-subheader" class="subheader">WORLD POPULATION</h3>
+      <div class="statistic-buttons-subheader">
+        <div class="buttons">
+          <button id="statistic-button-population" class="statistic-button">POPLATION</button>
+          <button id="statistic-button-languages" class="statistic-button">LANGUAGES</button>
         </div>
-        <div>
-            <div class="statistics-block-1">
-                <div id="statistics-block-name-world" class="statistics-block-name">WORLD</div>
-                <div class="percentage-container">
-                    <div id="statistics-block-percentage-world" class="statistics-block-percentage"></div>
-                    <div id="statistics-block-percentage-world-gray" class="statistics-block-percentage-gray"></div>
-                </div>
-                <div id="statistics-block-population-world" class="statistics-block-population"></div>
-            </div>
+        <h3 id="statistic-subheader" class="subheader">WORLD POPULATION</h3>
+      </div>
+      <div>
+        <div class="statistics-block-1">
+          <div id="statistics-block-name-world" class="statistics-block-name">WORLD</div>
+          <div class="percentage-container">
+            <div id="statistics-block-percentage-world" class="statistics-block-percentage"></div>
+            <div id="statistics-block-percentage-world-gray" class="statistics-block-percentage-gray"></div>
+          </div>
+          <div id="statistics-block-population-world" class="statistics-block-population"></div>
         </div>
-        <div class="statistics"></div>
+      </div>
+      <div class="statistics"></div>
     </div>
     <footer class="footer">
-        <a class="footer-paragraph" aria-label="myGit" target="_blank" href="https://github.com/Sema92m/30-days-of-JS/tree/main/days/day30">Developed by SB</a>
+      <a class="footer-paragraph" aria-label="myGit" target="_blank"
+        href="https://github.com/Sema92m/30-days-of-JS/tree/main/days/day30">Developed by SB</a>
     </footer>
-</div>
-<!-- Day 30 MAIN -->
-<!-- DAY 30 VALIDATING-->
-<!-- <div class="validation-wrappper">
+  </div>
+  <!-- Day 30 MAIN -->
+  <!-- DAY 30 VALIDATING-->
+  <!-- <div class="validation-wrappper">
     
         <h1>Validating Web Forms</h1>
 
@@ -92,11 +95,11 @@
     
 </div> -->
 
-<!-- DAY 30 VALIDATING-->
+  <!-- DAY 30 VALIDATING-->
 
 
-    <!-- DAY 28 -->
-    <!-- <div class="container">
+  <!-- DAY 28 -->
+  <!-- <div class="container">
         <h2>30 Days Of JavaScript Challenge Leaderboard</h2>
         <div class="inputContainer">
             <input id="inputName" class="input" type="text" placeholder="First Name">
@@ -109,13 +112,13 @@
         <ul class="itemsContainer">
         </ul> 
     </div> -->
-    <!-- DAY 28 -->
+  <!-- DAY 28 -->
 
 
 
 
-    <!-- day 27 portfolio -->
-    <!-- <div class="day27">
+  <!-- day 27 portfolio -->
+  <!-- <div class="day27">
     <div class="container">
         <h1 class="h1">Asabeneh Yetayeh</h1>
         <div id="animate">
@@ -132,20 +135,20 @@
         </div>
     </div>
 </div> -->
-    <!-- day 27 portfolio -->
+  <!-- day 27 portfolio -->
 
-    <script src="./days/day30/day30mainproject/day30flags.js"></script>
-    <!-- <script src="./days/day30/day30validation/day30validation.js"></script> -->
-    <!-- <script src="./days/day28/day28.js"></script> -->
-    <!-- <script src="./days/day27/day27.js"></script> -->
-    <!-- <script src="./days/day26/day26.js"></script> -->
-    <!-- <script src="./days/day25/day25.js"></script> -->
-    <!-- <script src="./days/day24/day24.js"></script> -->
-    <!-- <script src="./days/day23/day23.js"></script> -->
-    <!-- <script src="./days/day22/ex3.js"></script> -->
-    <!-- <script src="./days/day22/day22.js"></script> -->
-    <!-- <script src="./days/day21/day21.js"></script> -->
-    <!-- <script src="./index.js"></script> -->
+  <script src="./days/day30/day30mainproject/day30flags.js"></script>
+  <!-- <script src="./days/day30/day30validation/day30validation.js"></script> -->
+  <!-- <script src="./days/day28/day28.js"></script> -->
+  <!-- <script src="./days/day27/day27.js"></script> -->
+  <!-- <script src="./days/day26/day26.js"></script> -->
+  <!-- <script src="./days/day25/day25.js"></script> -->
+  <!-- <script src="./days/day24/day24.js"></script> -->
+  <!-- <script src="./days/day23/day23.js"></script> -->
+  <!-- <script src="./days/day22/ex3.js"></script> -->
+  <!-- <script src="./days/day22/day22.js"></script> -->
+  <!-- <script src="./days/day21/day21.js"></script> -->
+  <!-- <script src="./index.js"></script> -->
 </body>
 
 </html>
